@@ -2,6 +2,7 @@ package yorkpirates.game;
 
 import java.util.ArrayList;
 import java.util.Timer;
+import java.util.TimerTask;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
@@ -65,35 +66,23 @@ public class Weather {
         }else if(weatherType == WeatherType.STORM){
             disSpeed = 20;
             player.projectileShootCooldown = 0.8f;
-        // }else if (weatherType == WeatherType.MORTAR){
-        //     disSpeed = 30;
-        //     // player.playerProjectileDamage = 200f;
-        //     // t =  new Timer();
-        //     // TimerTask tt = new TimerTask(){
-        //     //     public void run(){
-        //     //         try{
-        //     //             Thread.sleep(1000);
-        //     //         }catch(InterruptedException e){}
-        //     //         player.takeDamage(gameScreen, 20, "ENEMY");
-        //     //     }
-        //     // };
-        //     // t.scheduleAtFixedRate(tt, 0, 2000);
-
-        //     //Long timer for player damage via mortar
-        //     gameScreen.mortarable = true;
+        }else if (weatherType == WeatherType.MORTAR){
+            disSpeed = 30;
+            //Long timer for player damage via mortar
+            gameScreen.mortarable = true;
         
-        //     player.projectileShootCooldown = 0.9f;
+            player.projectileShootCooldown = 0.9f;
         }
         player.SPEED-=disSpeed;
         for(Actor r : disList){
             HUD.stage.addActor(r);
         }
     }
-    public static void ResetPlayerDisadvantage(Player player){
+    public static void ResetPlayerDisadvantage(GameScreen gameScreen,Player player){
 
         //remove timer
-        if(t != null){
-            t.cancel();
+        if(gameScreen.mortarable == true){
+            gameScreen.mortarable = false;
         }
        
         //disadvatange player attributes

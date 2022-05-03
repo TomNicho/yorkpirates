@@ -26,6 +26,8 @@ public class College extends GameObject {
     public Texture boatTexture, capturedTexture;
     public Array<Boat> boats;
 
+    private GameScreen screen;
+
     /**
      * Generates a college object within the game with animated frame(s) and a hit-box.
      * @param x         The x coordinate within the map to initialise the object at.
@@ -33,13 +35,14 @@ public class College extends GameObject {
      * @param name      The name of the college.
      * @param team      The team the college is on.
      */
-    public College(Texture texture, float x, float y, float scale, int maxHealth, int boatHealth, String name, String team, Player player, Texture boatTexture, Texture capturedTexture) {
+    public College(GameScreen gameScreen, Texture texture, float x, float y, float scale, int maxHealth, int boatHealth, String name, String team, Player player, Texture boatTexture, Texture capturedTexture) {
         super(texture, x, y, texture.getWidth()*scale, texture.getHeight()*scale, team);
 
         this.boatTexture = boatTexture;
         this.capturedTexture = capturedTexture;
         this.boats = new Array<>();
         this.scale = scale;
+        this.screen = gameScreen;
 
         setMaxHealth(maxHealth);
         lastShotFired = 0;
@@ -139,17 +142,18 @@ public class College extends GameObject {
                 College.capturedCount++;
 
                 //remove mortars
-                if(team == "Langwith"){
-                    for(Weather w : GameScreen.weathers){
+                if(collegeName == "Langwith"){
+                    System.out.println("asdssdsasdasdasdasd");
+                    for(Weather w : screen.weathers){
                         if(w.xpos == 1380){
-                            GameScreen.weathers.remove(w);
+                            screen.weathers.remove(w);
                             break;
                         }
                     }
-                }else if(team == "Alcuin"){
-                    for(Weather w : GameScreen.weathers){
+                }else if(collegeName == "Alcuin"){
+                    for(Weather w : screen.weathers){
                         if(w.xpos == 1435){
-                            GameScreen.weathers.remove(w);
+                            screen.weathers.remove(w);
                             break;
                         }
                     }

@@ -45,6 +45,7 @@ public class HUD {
     private final Label score;
     private final Label loot;
     public static Label speedLbl;
+    public static Label powerLbl;
     
 
     // Player tasks
@@ -188,6 +189,12 @@ public class HUD {
         speedLbl .setPosition(Gdx.graphics.getWidth() - 300, Gdx.graphics.getHeight() - 100);
         speedLbl.setFontScale(0.8f);
         stage.addActor(speedLbl);
+
+        //powerup
+        powerLbl = new Label("no power up", skin);
+        powerLbl .setPosition(Gdx.graphics.getWidth() - 300, Gdx.graphics.getHeight() - 200);
+        powerLbl.setFontScale(0.8f);
+        stage.addActor(powerLbl);
 
         // Add actors to the stage
         stage.addActor(mainTable);

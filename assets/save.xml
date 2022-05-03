@@ -1,59 +1,59 @@
 <all>
 	<player>
-		<x>827.8939</x>
-		<y>713.05927</y>
+		<x>930.64795</x>
+		<y>498.37756</y>
 		<weather>None</weather>
 	</player>
 	<colleges>
+		<Alcuin>
+			<x>1492.0</x>
+			<y>672.0</y>
+			<team>ENEMY</team>
+			<boats>
+				<boat>
+					<x>3014.0</x>
+					<y>1324.0</y>
+				</boat>
+				<boat>
+					<x>2934.0</x>
+					<y>1304.0</y>
+				</boat>
+				<boat>
+					<x>2944.0</x>
+					<y>1274.0</y>
+				</boat>
+			</boats>
+		</Alcuin>
 		<Home>
 			<x>700.0</x>
 			<y>525.0</y>
 			<team>PLAYER</team>
 			<boats/>
 		</Home>
-		<Alcuin>
-			<x>1492.0</x>
-			<y>665.0</y>
-			<team>ENEMY</team>
-			<boats>
-				<boat>
-					<x>3032.0</x>
-					<y>1365.0</y>
-				</boat>
-				<boat>
-					<x>2872.0</x>
-					<y>1315.0</y>
-				</boat>
-				<boat>
-					<x>3072.0</x>
-					<y>1265.0</y>
-				</boat>
-			</boats>
-		</Alcuin>
 		<Langwith>
 			<x>1300.0</x>
 			<y>1530.0</y>
 			<team>ENEMY</team>
 			<boats>
 				<boat>
-					<x>2700.0</x>
-					<y>3130.0</y>
+					<x>2450.0</x>
+					<y>3010.0</y>
 				</boat>
 				<boat>
-					<x>2750.0</x>
-					<y>3110.0</y>
+					<x>2480.0</x>
+					<y>3050.0</y>
 				</boat>
 				<boat>
-					<x>2500.0</x>
-					<y>3150.0</y>
+					<x>2590.0</x>
+					<y>3020.0</y>
 				</boat>
 				<boat>
-					<x>2530.0</x>
-					<y>2930.0</y>
+					<x>2740.0</x>
+					<y>3070.0</y>
 				</boat>
 				<boat>
-					<x>2610.0</x>
-					<y>3210.0</y>
+					<x>2800.0</x>
+					<y>3095.0</y>
 				</boat>
 			</boats>
 		</Langwith>
@@ -63,12 +63,12 @@
 			<team>ENEMY</team>
 			<boats>
 				<boat>
-					<x>3735.0</x>
-					<y>4505.0</y>
+					<x>3560.0</x>
+					<y>4190.0</y>
 				</boat>
 				<boat>
-					<x>3555.0</x>
-					<y>3905.0</y>
+					<x>3560.0</x>
+					<y>4150.0</y>
 				</boat>
 			</boats>
 		</Derwent>

@@ -236,6 +236,25 @@ public class GameScreen extends ScreenAdapter {
         generateSnow();
         generateStorm();
 
+        //powerUps
+        Texture speed = new Texture("speed.png");
+        Texture firerate = new Texture("firerate.png");
+        Texture damage = new Texture("damage.png");
+        Texture immune = new Texture("immune.png");
+        Texture health = new Texture("health.png");
+        PowerUp s1 = new PowerUp(speed, 940, 550, 20f, 20f, "ENEMY", 0, PowerType.SPEED);
+        PowerUp f1 = new PowerUp(firerate, 940, 450, 20f, 20f, "ENEMY", 0, PowerType.FIRERATE);
+        PowerUp d1 = new PowerUp(damage, 840, 450, 20f, 20f, "ENEMY", 0, PowerType.DAMAGE);
+        PowerUp i1 = new PowerUp(immune, 940, 350, 20f, 20f, "ENEMY", 0, PowerType.IMMUNE);
+        PowerUp h1 = new PowerUp(health, 840, 350, 20f, 20f, "ENEMY", 0, PowerType.HEAL);
+
+        obstacles.add(s1);
+        obstacles.add(f1);
+        obstacles.add(d1);
+        obstacles.add(i1);
+        obstacles.add(h1);
+
+
     }
     private void generateRain(){
         Texture rain = new Texture(Gdx.files.internal("rain.png"));
@@ -402,7 +421,13 @@ public class GameScreen extends ScreenAdapter {
             updateWeatherEvents();
         }
 
-        if (TimeUtils.timeSinceMillis(lastShot) >= 200) {
+        //checks for firerate powerup
+        int cooldown = 200;
+        if (player.activePower == PowerType.FIRERATE){
+            cooldown = 50;
+        }
+
+        if (TimeUtils.timeSinceMillis(lastShot) >= cooldown) {
 
             // Check for projectile creation, then call projectile update
             if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 
 public class GameObject {
     public float x, y, width, height, currentHealth;
@@ -102,6 +103,10 @@ public class GameObject {
         return hitBox.overlaps(rect);
     }
 
+    public Vector2 getPosition(){
+        return new Vector2(x, y);
+    }
+
     /**
      * Called when drawing the object.
      * @param batch         The batch to draw the object within.
@@ -116,5 +121,9 @@ public class GameObject {
      */
     public void dispose(){
         texture.dispose();
+    }
+
+    public boolean inProcess(Vector2 pos, int radius) {
+        return pos.dst(x, y) < radius;
     }
 }

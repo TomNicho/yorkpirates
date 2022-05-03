@@ -9,12 +9,11 @@ import com.badlogic.gdx.utils.TimeUtils;
 
 import java.util.Objects;
 
-import static java.lang.Math.abs;
-
-
 public class College extends GameObject {
 
     public static int capturedCount = 0;
+    public static int PROCESS_RANGE = 180;
+    public static int FIRE_RATE = 1000;
 
     private HealthBar collegeBar;
     private Indicator direction;
@@ -34,7 +33,7 @@ public class College extends GameObject {
      * @param name      The name of the college.
      * @param team      The team the college is on.
      */
-    public College(Texture texture, float x, float y, float scale, String name, String team, Player player, Texture boatTexture, Texture capturedTexture) {
+    public College(Texture texture, float x, float y, float scale, int maxHealth, int boatHealth, String name, String team, Player player, Texture boatTexture, Texture capturedTexture) {
         super(texture, x, y, texture.getWidth()*scale, texture.getHeight()*scale, team);
 
         this.boatTexture = boatTexture;
@@ -42,7 +41,7 @@ public class College extends GameObject {
         this.boats = new Array<>();
         this.scale = scale;
 
-        setMaxHealth(50);
+        setMaxHealth(maxHealth);
         lastShotFired = 0;
         collegeName = name;
 
@@ -68,15 +67,16 @@ public class College extends GameObject {
         direction.move();
         float playerX = screen.getPlayer().x;
         float playerY = screen.getPlayer().y;
-        boolean nearPlayer = abs(this.x - playerX) < (Gdx.graphics.getWidth()/15f) && abs(this.y - playerY) < (Gdx.graphics.getHeight()/10f);
+        
+        boolean nearPlayer = inProcess(screen.getPlayer().getPosition(), PROCESS_RANGE);
 
         if(nearPlayer || screen.isPaused()){
             direction.setVisible(false);
 
             if(!Objects.equals(team, GameScreen.playerTeam)) { // Checks if the college is an enemy of the player
+
                 // How often the college can shoot.
-                int shootFrequency = 1000;
-                if (TimeUtils.timeSinceMillis(lastShotFired) > shootFrequency){
+                if (TimeUtils.timeSinceMillis(lastShotFired) > FIRE_RATE){
                     lastShotFired = TimeUtils.millis();
                     screen.projectiles.add(new Projectile(new Texture("tempProjectile.png"), this, playerX, playerY, team));
                 }
@@ -96,10 +96,8 @@ public class College extends GameObject {
             direction.setVisible(true);
         }
 
-        Player player = screen.getPlayer();
-
         for (Boat b : boats) {
-            b.move(player.x, player.y);
+            b.move(playerX, playerY);
         }
 
         return 0;
@@ -197,5 +195,4 @@ public class College extends GameObject {
         boats.add(new Boat(boatTexture, this.x+x, this.y+y, 25, 12, rotation, team));
         // boatRotations.add(rotation);
     }
-
 }

@@ -1,6 +1,5 @@
 package yorkpirates.game;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -70,9 +69,13 @@ public class GameObject {
      * @param x     The amount to move the object within the x-axis.
      * @param y     The amount to move the object within the y-axis.
      */
-    public void move(float x, float y){
-        this.x += x * Gdx.graphics.getDeltaTime();
-        this.y += y * Gdx.graphics.getDeltaTime();
+    public void move(float x, float y, float delta){
+        this.x += x * delta;
+        this.y += y * delta;
+    }
+
+    public int update(GameScreen screen, float delta) {
+        return 0;
     }
 
     /**

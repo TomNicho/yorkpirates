@@ -63,7 +63,8 @@ public class College extends GameObject {
      * Called once per frame. Used to perform calculations such as collision.
      * @param screen    The main game screen.
      */
-    public int update(GameScreen screen){
+    @Override
+    public int update(GameScreen screen, float delta){
         direction.move();
         float playerX = screen.getPlayer().x;
         float playerY = screen.getPlayer().y;
@@ -97,7 +98,7 @@ public class College extends GameObject {
         }
 
         for (Boat b : boats) {
-            b.move(playerX, playerY);
+            b.move(playerX, playerY, delta);
         }
 
         return 0;

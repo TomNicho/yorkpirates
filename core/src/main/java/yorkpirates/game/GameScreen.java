@@ -432,13 +432,13 @@ public class GameScreen extends ScreenAdapter {
         }
 
         // Call updates for all relevant objects
-        player.update(this, game.camera);
+        player.update(this, delta);
         
         Iterator<Projectile> pIterator = projectiles.iterator();
 
         while (pIterator.hasNext()) {
             Projectile p = pIterator.next();
-            if (p.update(this) == 0) {
+            if (p.update(this, delta) == 0) {
                 pIterator.remove();
             }
         }
@@ -447,7 +447,7 @@ public class GameScreen extends ScreenAdapter {
 
         while (cIterator.hasNext()) {
             College c = cIterator.next();
-            c.update(this);
+            c.update(this, delta);
         }
 
         //Weather updates

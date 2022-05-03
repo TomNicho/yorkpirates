@@ -19,7 +19,7 @@ public class Boat extends GameObject {
     }
 
     @Override
-    public void move(float x, float y) {
+    public void move(float x, float y, float delta) {
         if (!inProcess(new Vector2(x, y), PROCESS_RANGE)) return;
 
         float rotation = (float) Math.toDegrees(Math.atan2(y - this.y, x - this.x));
@@ -31,8 +31,8 @@ public class Boat extends GameObject {
 
         if (inProcess(new Vector2(x, y), STOP_RANGE)) return;
         
-        this.x += MOVE_SPEED * Math.cos(Math.toRadians(this.rotation));
-        this.y += MOVE_SPEED * Math.sin(Math.toRadians(this.rotation));
+        this.x += MOVE_SPEED * Math.cos(Math.toRadians(this.rotation)) * delta;
+        this.y += MOVE_SPEED * Math.sin(Math.toRadians(this.rotation)) * delta;
     }
 
     @Override

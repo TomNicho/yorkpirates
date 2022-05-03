@@ -59,13 +59,14 @@ public class Projectile extends GameObject{
      * Called once per frame. Used to perform calculations such as projectile movement and collision detection.
      * @param screen    The main game screen.
      */
-    public int update(GameScreen screen){
+    @Override
+    public int update(GameScreen screen, float delta){
 
         // Movement Calculations
         float xMove = projectileSpeed * dx;
         float yMove = projectileSpeed * dy;
         distanceTravelled += projectileSpeed;
-        move(xMove, yMove);
+        move(xMove, yMove, delta);
 
         // Hit calculations
         if (origin == screen.getPlayer()) {

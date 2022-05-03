@@ -97,7 +97,7 @@ public class College extends GameObject {
         }
 
         for (Boat b : boats) {
-            b.move(playerX, playerY);
+            b.check_collision(screen, playerX, playerY);
         }
 
         return 0;

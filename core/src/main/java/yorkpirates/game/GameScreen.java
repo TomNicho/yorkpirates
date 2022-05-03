@@ -135,9 +135,9 @@ public class GameScreen extends ScreenAdapter {
 
         // Add alcuin
         newCollege = new College(new Texture("alcuin.png"), 1492, 672, 0.4f, 50, 50, "Alcuin", enemyTeam, player, new Texture("alcuin_boat.png"), new Texture("alcuin_2.png"));
-        newCollege.addBoat(30, -20, -60);
-        newCollege.addBoat(-50, -40, -150);
-        newCollege.addBoat(-40, -70, 0);
+        newCollege.addBoat(90, -50, -60);
+        newCollege.addBoat(-90, -40, -150);
+        newCollege.addBoat(-40, -100, 0);
         colleges.add(newCollege);
 
         // Add derwent

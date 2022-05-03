@@ -76,6 +76,15 @@ public class Projectile extends GameObject{
                     }
                     return 0;
                 }
+
+                for (Boat b : c.boats) {
+                    if (overlaps(b.hitBox)) {
+                        if(!Objects.equals(team, b.team)){ // Checks if projectile and boat are on the same time
+                            b.takeDamage(screen, projectileDamage, team);
+                        }
+                        return 0;
+                    }
+                }
             }
         } else {
             if (overlaps(screen.getPlayer().hitBox)) {

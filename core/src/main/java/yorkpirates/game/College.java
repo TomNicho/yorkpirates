@@ -9,26 +9,22 @@ import com.badlogic.gdx.utils.TimeUtils;
 
 import java.util.Objects;
 
-import static java.lang.Math.abs;
-
-
 public class College extends GameObject {
 
     public static int capturedCount = 0;
+    public static int PROCESS_RANGE = 180;
+    public static int FIRE_RATE = 1000;
 
     private HealthBar collegeBar;
     private Indicator direction;
 
-    private float splashTime;
     private long lastShotFired;
 
     public final String collegeName;
     public float scale;
 
     public Texture boatTexture, capturedTexture;
-    public Array<GameObject> boats;
-
-    private boolean doBloodSplash = false;
+    public Array<Boat> boats;
 
     /**
      * Generates a college object within the game with animated frame(s) and a hit-box.
@@ -37,7 +33,7 @@ public class College extends GameObject {
      * @param name      The name of the college.
      * @param team      The team the college is on.
      */
-    public College(Texture texture, float x, float y, float scale, String name, String team, Player player, Texture boatTexture, Texture capturedTexture) {
+    public College(Texture texture, float x, float y, float scale, int maxHealth, int boatHealth, String name, String team, Player player, Texture boatTexture, Texture capturedTexture) {
         super(texture, x, y, texture.getWidth()*scale, texture.getHeight()*scale, team);
 
         this.boatTexture = boatTexture;
@@ -45,8 +41,7 @@ public class College extends GameObject {
         this.boats = new Array<>();
         this.scale = scale;
 
-        splashTime = 0;
-        setMaxHealth(50);
+        setMaxHealth(maxHealth);
         lastShotFired = 0;
         collegeName = name;
 
@@ -72,22 +67,23 @@ public class College extends GameObject {
         direction.move();
         float playerX = screen.getPlayer().x;
         float playerY = screen.getPlayer().y;
-        boolean nearPlayer = abs(this.x - playerX) < (Gdx.graphics.getWidth()/15f) && abs(this.y - playerY) < (Gdx.graphics.getHeight()/10f);
+        
+        boolean nearPlayer = inProcess(screen.getPlayer().getPosition(), PROCESS_RANGE);
 
         if(nearPlayer || screen.isPaused()){
             direction.setVisible(false);
 
             if(!Objects.equals(team, GameScreen.playerTeam)) { // Checks if the college is an enemy of the player
+
                 // How often the college can shoot.
-                int shootFrequency = 1000;
-                if (TimeUtils.timeSinceMillis(lastShotFired) > shootFrequency){
+                if (TimeUtils.timeSinceMillis(lastShotFired) > FIRE_RATE){
                     lastShotFired = TimeUtils.millis();
                     screen.projectiles.add(new Projectile(new Texture("tempProjectile.png"), this, playerX, playerY, team));
                 }
             }else if(Objects.equals(collegeName, "Home")){
                 boolean victory = true;
                 for (College c : screen.colleges) {
-                    if(!Objects.equals(c.team, GameScreen.playerTeam)){
+                    if(!Objects.equals(c.team, GameScreen.playerTeam)) {
                         victory = false;
                     }
                 }
@@ -100,13 +96,8 @@ public class College extends GameObject {
             direction.setVisible(true);
         }
 
-        if(doBloodSplash){
-            if(splashTime > 1){
-                doBloodSplash = false;
-                splashTime = 0;
-            }else{
-                splashTime += 1;
-            }
+        for (Boat b : boats) {
+            b.move(playerX, playerY);
         }
 
         return 0;
@@ -121,7 +112,6 @@ public class College extends GameObject {
     @Override
     public void takeDamage(GameScreen screen, float damage, String projectileTeam){
         currentHealth -= damage;
-        doBloodSplash = true;
 
         if(currentHealth > 0){
             collegeBar.resize(currentHealth);
@@ -188,13 +178,12 @@ public class College extends GameObject {
 
         // TODO something about boat rotations
         // Draw boats before college so under
-        for(int i = 0; i < boats.size; i++){
-            GameObject boat = boats.get(i);
-            batch.draw(boatTexture, boat.x+boat.height, boat.y, 0,0, boat.width, boat.height, 1f, 1f, 0, 0, 0, boatTexture.getWidth(), boatTexture.getHeight(), false, false);
+        for (Boat b : boats) {
+            b.draw(batch, elapsedTime);
         }
 
-        collegeBar.draw(batch, 0);
-        direction.draw(batch,0);
+        collegeBar.draw(batch, elapsedTime);
+        direction.draw(batch, elapsedTime);
     }
 
     /**
@@ -203,8 +192,7 @@ public class College extends GameObject {
      * @param y The y position of the new boat relative to the college.
      */
     public void addBoat(float x, float y, float rotation){
-        boats.add(new GameObject(boatTexture, this.x+x, this.y+y, 25, 12, team));
+        boats.add(new Boat(boatTexture, this.x+x, this.y+y, 25, 12, rotation, team));
         // boatRotations.add(rotation);
     }
-
 }

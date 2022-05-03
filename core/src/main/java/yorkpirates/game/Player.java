@@ -67,7 +67,8 @@ public class Player extends GameObject {
      * @param screen    The main game screen.
      * @param camera    The player camera.
      */
-    public void update(GameScreen screen, OrthographicCamera camera){
+    @Override
+    public int update(GameScreen screen, float delta){
         Vector2 oldPos = new Vector2(x,y); // Stored for next-frame calculations
 
         // Get input movement
@@ -76,7 +77,7 @@ public class Player extends GameObject {
 
         // Calculate collision && movement
         if (horizontal != 0 || vertical != 0){
-            move(SPEED *horizontal, SPEED *vertical);
+            move(SPEED *horizontal, SPEED *vertical, delta);
             previousDirectionX = horizontal;
             previousDirectionY = vertical;
             if (safeMove(screen.getMain().edges)) {
@@ -103,7 +104,7 @@ public class Player extends GameObject {
         distance += Math.pow((Math.pow((x - oldPos.x),2f) + Math.pow((y - oldPos.y),2f)),0.5f)/10f;
 
         // Camera Calculations
-        ProcessCamera(screen, camera);
+        ProcessCamera(screen, screen.getMain().camera);
 
         // Blood splash calculations
         if(doBloodSplash){
@@ -138,12 +139,13 @@ public class Player extends GameObject {
                 }else{ 
                     
                     takeDamage(screen, o.damage, "ENEMY");
-                    move(1000 * -previousDirectionX, 1000 * -previousDirectionY);
+                    move(1000 * -previousDirectionX, 1000 * -previousDirectionY, delta);
                     
                 }
             }
         }
-        
+
+        return 0;
     }
 
     /**
@@ -166,11 +168,11 @@ public class Player extends GameObject {
      * @param y     The amount to move the object within the y-axis.
      */
     @Override
-    public void move(float x, float y){
-        this.x += x * Gdx.graphics.getDeltaTime();
-        this.y += y * Gdx.graphics.getDeltaTime();
+    public void move(float x, float y, float delta){
+        this.x += x * delta;
+        this.y += y * delta;
         HUD.speedLbl.setText(SPEED + "mph");
-        playerHealth.move(this.x, this.y + height/2 + 2f); // Healthbar moves with player
+        playerHealth.move(this.x, this.y + height/2 + 2f, delta); // Healthbar moves with player
     }
     
     public void checkForWeather(GameScreen gameScreen){

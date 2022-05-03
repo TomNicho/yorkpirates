@@ -175,11 +175,11 @@ public class Player extends GameObject {
     
     public void checkForWeather(GameScreen gameScreen){
    
-        WeatherType type = Weather.WhichWeather((int)this.x, (int)this.y, GameScreen.weathers);
+        WeatherType type = Weather.WhichWeather((int)this.x, (int)this.y, gameScreen.weathers);
         // HUD.UpdateWeatherLabel(this.x + " | " + this.y,weatherLabel);
         //only check if its different weather
         if(currentWeatherType != type){
-            Weather.ResetPlayerDisadvantage(this);
+            Weather.ResetPlayerDisadvantage(gameScreen,this);
             if(type == WeatherType.NONE){
 
                 HUD.UpdateWeatherLabel("",weatherLabel);

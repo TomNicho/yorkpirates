@@ -37,7 +37,7 @@ public class GameScreen extends ScreenAdapter {
 
     //weathers and positions
    
-    public static ArrayList<Weather> weathers = new ArrayList<Weather> ();
+    public ArrayList<Weather> weathers;
 
     // Score managers
     public ScoreManager points;
@@ -134,20 +134,20 @@ public class GameScreen extends ScreenAdapter {
         College newCollege;
 
         // Add alcuin
-        newCollege = new College(new Texture("alcuin.png"), 1492, 672, 0.4f, 50, 50, "Alcuin", enemyTeam, player, new Texture("alcuin_boat.png"), new Texture("alcuin_2.png"));
+        newCollege = new College(this,new Texture("alcuin.png"), 1492, 672, 0.4f, 50, 50, "Alcuin", enemyTeam, player, new Texture("alcuin_boat.png"), new Texture("alcuin_2.png"));
         newCollege.addBoat(30, -20, -60);
         newCollege.addBoat(-50, -40, -150);
         newCollege.addBoat(-40, -70, 0);
         colleges.add(newCollege);
 
         // Add derwent
-        newCollege = (new College(new Texture("derwent.png"), 1815, 2105, 0.8f, 50, 50, "Derwent", enemyTeam, player, new Texture("derwent_boat.png"), new Texture("derwent_2.png")));
+        newCollege = (new College(this,new Texture("derwent.png"), 1815, 2105, 0.8f, 50, 50, "Derwent", enemyTeam, player, new Texture("derwent_boat.png"), new Texture("derwent_2.png")));
         newCollege.addBoat(-70, -20, 60);
         newCollege.addBoat(-70, -60, 70);
         colleges.add(newCollege);
 
         // Add langwith
-        newCollege = (new College(new Texture("langwith.png"), 1300, 1530, 1.0f, 50, 50, "Langwith", enemyTeam, player, new Texture("langwith_boat.png"), new Texture("langwith_2.png")));
+        newCollege = (new College(this,new Texture("langwith.png"), 1300, 1530, 1.0f, 50, 50, "Langwith", enemyTeam, player, new Texture("langwith_boat.png"), new Texture("langwith_2.png")));
         newCollege.addBoat(-150, -50, 60);
         newCollege.addBoat(-120, -10, -60);
         newCollege.addBoat(-10, -40, 230);
@@ -156,7 +156,7 @@ public class GameScreen extends ScreenAdapter {
         colleges.add(newCollege);
 
         // Add goodricke
-        colleges.add(new College(new Texture("goodricke.png"), 700, 525, 0.7f, 5000, 50, "Home",playerTeam,player, new Texture("ship1.png"), null));
+        colleges.add(new College(this,new Texture("goodricke.png"), 700, 525, 0.7f, 5000, 50, "Home",playerTeam,player, new Texture("ship1.png"), null));
 
         // Initialise projectiles array to be used storing live projectiles
         projectiles = new HashSet<>();
@@ -182,7 +182,7 @@ public class GameScreen extends ScreenAdapter {
         lastMortar = TimeUtils.millis();
 
         //Weather and obstacles
-
+        weathers = new ArrayList<Weather> ();
         //init weather events
         initWeatherEvents();
 
@@ -308,8 +308,8 @@ public class GameScreen extends ScreenAdapter {
         Weather storm =  new Weather(1700, 678, 100,100, WeatherType.STORM);
         Weather storm2 =  new Weather(670, 700, 150,150, WeatherType.STORM);
         Weather storm3 =  new Weather(400,1000, 200,150, WeatherType.STORM);
-        // Weather mortar =  new Weather(1380, 1770, 180,150, WeatherType.MORTAR);
-        // Weather mortar2 = new Weather(1435,741,180,150,WeatherType.MORTAR);
+        Weather mortar =  new Weather(1380, 1770, 180,200, WeatherType.MORTAR);
+        Weather mortar2 = new Weather(1435,741,200,200,WeatherType.MORTAR);
         
         weathers.add(rain);
         weathers.add(rain2);
@@ -319,8 +319,8 @@ public class GameScreen extends ScreenAdapter {
         weathers.add(storm);
         weathers.add(storm2);
         weathers.add(storm3);
-        // weathers.add(mortar);
-        // weathers.add(mortar2);
+        weathers.add(mortar);
+        weathers.add(mortar2);
     }
 
     public void updateWeatherEvents() {
@@ -464,7 +464,7 @@ public class GameScreen extends ScreenAdapter {
         }
 
         if (mortarable) {
-            if (TimeUtils.timeSinceMillis(lastMortar) >= 2000) { 
+            if (TimeUtils.timeSinceMillis(lastMortar) >= 1000) { 
                 player.takeDamage(this, 20, "ENEMY");
                 lastMortar = TimeUtils.millis();
             }
@@ -542,7 +542,7 @@ public class GameScreen extends ScreenAdapter {
             String toLoadCollegeName = toLoadCollege.collegeName;
             String newteam = XmlLoad.LoadCollegeTeam(toLoadCollegeName);
             Float[] newpos = XmlLoad.LoadCollegePosition(toLoadCollegeName);
-            College addCollege = new College(toLoadCollege.texture, newpos[0], newpos[1], toLoadCollege.scale, toLoadCollege.maxHealth, 50, toLoadCollege.collegeName, newteam, player, toLoadCollege.boatTexture, toLoadCollege.capturedTexture);
+            College addCollege = new College(this,toLoadCollege.texture, newpos[0], newpos[1], toLoadCollege.scale, toLoadCollege.maxHealth, 50, toLoadCollege.collegeName, newteam, player, toLoadCollege.boatTexture, toLoadCollege.capturedTexture);
             //adds boats to college using xml file (currently kinda broken)
             for (Float[] newBoat : XmlLoad.LoadCollegeBoats(toLoadCollegeName)) {
                 System.out.println(String.valueOf(newBoat[0]));

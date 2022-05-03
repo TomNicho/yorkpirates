@@ -98,6 +98,8 @@ public class College extends GameObject {
 
         for (Boat b : boats) {
             b.check_collision(screen, playerX, playerY);
+            b.updateHitboxPos();
+            b.fire(screen);
         }
 
         return 0;

@@ -13,18 +13,18 @@ docs:
   target: _blank
 
 - title: Deliverables
-  url: /deliverables
+  url: deliverables
   target: _self
 
 - title: Plan
-  url: /plan
+  url: plan
   target: _self
 
 - title: Use Case
-  url: /usecase
+  url: usecase
   target: _self
 
 - title: Files
-  url: /files
+  url: files
   target: _self
 

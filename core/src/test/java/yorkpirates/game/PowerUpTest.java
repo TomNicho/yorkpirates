@@ -4,7 +4,12 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import yorkpirates.GdxTestRunner;
+
+//DONE
+@RunWith(GdxTestRunner.class)
 public class PowerUpTest {
     
     private PowerUp p;

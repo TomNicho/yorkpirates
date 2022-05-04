@@ -223,8 +223,8 @@ public class Player extends GameObject {
      */
     @Override
     public void move(float x, float y, float delta){
-        this.x += x * Gdx.graphics.getDeltaTime();
-        this.y += y * Gdx.graphics.getDeltaTime();
+        this.x += x * delta;
+        this.y += y * delta;
         float speedtext = SPEED;
         if (activePower == PowerType.SPEED){
             speedtext += 50;
@@ -343,5 +343,9 @@ public class Player extends GameObject {
 
     public String getSpeedString(){
         return Float.toString(SPEED);
+    }
+
+    public WeatherType getCurrentWeatherType() {
+        return currentWeatherType;
     }
 }

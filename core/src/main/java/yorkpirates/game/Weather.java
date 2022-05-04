@@ -70,6 +70,9 @@ public class Weather {
             player.projectileShootCooldown = 0.9f;
         }
         player.SPEED-=disSpeed;
+
+        if (HUD.stage == null) return;
+
         for(Actor r : disList){
             HUD.stage.addActor(r);
         }
@@ -84,6 +87,9 @@ public class Weather {
         //disadvatange player attributes
         player.SPEED+=disSpeed;
         player.projectileShootCooldown = 0.1f;
+
+        if (HUD.stage == null) return;
+
         Array<Actor> actors = HUD.stage.getActors();
         for(int i = actors.size-1; i> 0;i--){
             Actor a = actors.get(i);

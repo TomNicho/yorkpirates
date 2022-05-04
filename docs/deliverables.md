@@ -33,11 +33,17 @@ Project deliverables (stored via Google Drive) can be accessed from this page.
 ## Change report
 [**Google Drive**](https://docs.google.com/document/d/1VSXdc9N1XKRDUk9eQ_pvwnjSHLegtE5D3Lo64sZWVwI/edit)
 
+[**Download**](documents/Change2.pdf)
+
 ## Continuous Integration
 [**Google Drive**](https://docs.google.com/document/d/1QZj2G1dckLPhi_ErYFxx2sfw12rasBJTLIkwA24BCl0/edit)
 
+[**Download**](documents/CI2.pdf)
+
 ## Implementation
 [**Google Drive**](https://docs.google.com/document/d/1wUtgY5f0ALPfnosdwSVNWjvOoCqXCNg6DTiQHFJ-5Gs/edit)
+
+[**Download**](documents/Impl2.pdf)
 
 ## Testing
 [**Google Drive**](https://docs.google.com/document/d/17Zemm-0yW7l6_WjiD3QGo30u1nzGQ9e6VLoqADTvR2c/edit)

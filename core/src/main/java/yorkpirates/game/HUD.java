@@ -30,6 +30,7 @@ public class HUD {
     private final Label tutorialLabel;
     private boolean tutorialComplete = false;
     private boolean canEndGame = false;
+    private Label saveLoadLabel;
 
     // Shop
     private final Table shop;
@@ -95,7 +96,7 @@ public class HUD {
         // Create tutorial actors
         Image tutorialImg = new Image(screen.getMain().keyboard.getKeyFrame(0f));
         tutorialImg.setScaling(Scaling.fit);
-        tutorialLabel = new Label("WASD or Arrow Keys\n to Move.", skin);
+        tutorialLabel = new Label("WASD to Move.", skin);
 
         // Create score related actors
         Image coin = new Image(new Texture(Gdx.files.internal("loot.png")));
@@ -151,6 +152,8 @@ public class HUD {
         this.tutorialImg = tutorial.add(tutorialImg).expand().fill().minSize(200f).maxSize(500f);
         tutorial.row();
         tutorial.add(tutorialLabel);
+        saveLoadLabel = new Label("Press k to save and l to load", skin);
+        saveLoadLabel.setBounds(10, 35, 16, 9);
        
         if(YorkPirates.DEBUG_ON) tutorial.setDebug(true);
 
@@ -213,6 +216,7 @@ public class HUD {
         stage.addActor(mainTable);
         stage.addActor(shop);
         stage.addActor(openShop);
+        stage.addActor(saveLoadLabel);
 
         shop.setVisible(false);
 
@@ -265,31 +269,9 @@ public class HUD {
         // Calculate which part of the tutorial to show
         if(screen.getPlayer().getDistance() < 2){
             // Movement tutorial
-            Image newimg = new Image(screen.getMain().keyboard.getKeyFrame(0, false));
-            newimg.setScaling(Scaling.fit);
-            tutorialImg.setActor(newimg);
             tutorialComplete = false;
         } else if(!tutorialComplete){
             // Shooting tutorial
-            Image newimg = new Image(screen.getMain().mouse.getKeyFrame(0, false));
-            newimg.setScaling(Scaling.fit);
-            Image keyimg = new Image(screen.getMain().keyboard.getKeyFrame(0, false));
-            keyimg.setScaling(Scaling.fit);
-            if(TimeUtils.timeSinceMillis(lastImageChange) >= 1500){
-                if(currImage == null){
-                    currImage = "new";
-                }else{
-                    if(currImage == "new"){
-                        tutorialImg.setActor(newimg);
-                        currImage = "key";
-                    }else{
-                        tutorialImg.setActor(keyimg);
-                        currImage = "new";
-                    }
-                }
-                lastImageChange = TimeUtils.millis();
-            }
-           
             tutorialLabel.setText("Click or use arrow keys to shoot.");
         } else if(canEndGame) {
             // Able to end the game
@@ -302,6 +284,7 @@ public class HUD {
         } else {
             // Tutorial complete
             tutorial.setVisible(false);
+            saveLoadLabel.setText("");
         }
 
         // Prompt the player to open the shop

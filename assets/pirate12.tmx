@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="53" height="38" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="1">
+ <tileset firstgid="1" source="Pirate1.tsx"/>
+ <tileset firstgid="97" source="pirate16x16.tsx"/>
+ <layer id="2" name="Tile Layer 2" width="53" height="38" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJzt0TEOwCAMBEH+/5P8MlVaY4FPS/BZun4HxojvCfaHi/pnO/V2TCfaKjyn2apN9BvQnmoTbbnZVGmjDQoX3a9w0e2dTDsuurubadVFN3c0rbjoXoWLblW46E6Fi260Keei+2y61zRz0W025Vx0l005F91kU85F9yhcdItNORfdYVPORTfY1G/fH70RFANx
+  </data>
+ </layer>
+ <layer id="1" name="Edges" width="53" height="38">
+  <data encoding="base64" compression="zlib">
+   eJzt2bENACAIBVG2Zia3dAE7NP5LrriW5FFCV1WHtQbdmJGWJkaaGGlipImRJkaaGGlipImRJkaaGGliNDGl7kKTJqIptZPp1i0+yURPEyNNjDQx+v2LftUGj6MQpg==
+  </data>
+ </layer>
+</map>

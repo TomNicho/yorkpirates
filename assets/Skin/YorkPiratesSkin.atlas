@@ -1,0 +1,195 @@
+
+YorkPiratesSkin.png
+size: 2048, 2048
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+white-pixel
+  rotate: false
+  xy: 509, 724
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
+button
+  rotate: false
+  xy: 1191, 1885
+  size: 126, 128
+  orig: 126, 128
+  offset: 0, 0
+  index: -1
+button_down
+  rotate: false
+  xy: 1, 391
+  size: 126, 128
+  orig: 126, 128
+  offset: 0, 0
+  index: -1
+button_over
+  rotate: false
+  xy: 1319, 1885
+  size: 126, 128
+  orig: 126, 128
+  offset: 0, 0
+  index: -1
+checkbox
+  rotate: false
+  xy: 515, 1689
+  size: 63, 64
+  orig: 63, 64
+  offset: 0, 0
+  index: -1
+checkbox_full
+  rotate: false
+  xy: 1033, 1819
+  size: 63, 64
+  orig: 63, 64
+  offset: 0, 0
+  index: -1
+menu
+  rotate: false
+  xy: 1, 261
+  size: 126, 128
+  orig: 126, 128
+  offset: 0, 0
+  index: -1
+menu_down
+  rotate: false
+  xy: 129, 391
+  size: 126, 128
+  orig: 126, 128
+  offset: 0, 0
+  index: -1
+menu_over
+  rotate: false
+  xy: 1447, 1885
+  size: 126, 128
+  orig: 126, 128
+  offset: 0, 0
+  index: -1
+play
+  rotate: false
+  xy: 1, 131
+  size: 126, 128
+  orig: 126, 128
+  offset: 0, 0
+  index: -1
+play_down
+  rotate: false
+  xy: 257, 391
+  size: 126, 128
+  orig: 126, 128
+  offset: 0, 0
+  index: -1
+play_over
+  rotate: false
+  xy: 129, 261
+  size: 126, 128
+  orig: 126, 128
+  offset: 0, 0
+  index: -1
+quit
+  rotate: false
+  xy: 1, 1
+  size: 126, 128
+  orig: 126, 128
+  offset: 0, 0
+  index: -1
+quit_down
+  rotate: false
+  xy: 129, 131
+  size: 126, 128
+  orig: 126, 128
+  offset: 0, 0
+  index: -1
+quit_over
+  rotate: false
+  xy: 257, 261
+  size: 126, 128
+  orig: 126, 128
+  offset: 0, 0
+  index: -1
+restart
+  rotate: false
+  xy: 1703, 1885
+  size: 126, 128
+  orig: 126, 128
+  offset: 0, 0
+  index: -1
+restart_down
+  rotate: false
+  xy: 129, 1
+  size: 126, 128
+  orig: 126, 128
+  offset: 0, 0
+  index: -1
+restart_over
+  rotate: false
+  xy: 257, 131
+  size: 126, 128
+  orig: 126, 128
+  offset: 0, 0
+  index: -1
+textfield
+  rotate: false
+  xy: 1575, 1885
+  size: 126, 128
+  orig: 126, 128
+  offset: 0, 0
+  index: -1
+textfield_alt
+  rotate: false
+  xy: 596, 1757
+  size: 435, 126
+  orig: 435, 126
+  offset: 0, 0
+  index: -1
+textfield_cursor
+  rotate: false
+  xy: 385, 451
+  size: 8, 68
+  orig: 8, 68
+  offset: 0, 0
+  index: -1
+wide
+  rotate: false
+  xy: 1, 1885
+  size: 593, 128
+  orig: 593, 128
+  offset: 0, 0
+  index: -1
+wide_down
+  rotate: false
+  xy: 1, 1755
+  size: 593, 128
+  orig: 593, 128
+  offset: 0, 0
+  index: -1
+wide_over
+  rotate: false
+  xy: 596, 1885
+  size: 593, 128
+  orig: 593, 128
+  offset: 0, 0
+  index: -1
+Raleway-Bold(5)_0
+  rotate: false
+  xy: 1, 1241
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+Raleway-Bold(5)_1
+  rotate: false
+  xy: 1, 727
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+Raleway-Bold(6)
+  rotate: false
+  xy: 1, 521
+  size: 506, 204
+  orig: 506, 204
+  offset: 0, 0
+  index: -1

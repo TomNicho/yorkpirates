@@ -1,0 +1,134 @@
+@startuml
+
+class com.engteam14.yorkpirates.GameScreen {
++ {static} playerTeam: String
++ {static} enemyTeam: String
+
+- elapsedTime: float
+- isPaused: boolean
+- followPlayer: boolean
+
++ gamePause()
++ gameEnd(boolean)
++ gameReset()
+}
+
+class com.engteam14.yorkpirates.YorkPirates {
+- {static} SCREEN_TO_PIXEL_RATIO: int
+
++ create()
++ dispose()
++ quit()
+}
+
+class com.engteam14.yorkpirates.GameObject {
++ x: float
++ y: float
++ width: float
++ height: float
+
++ maxHealth: int
++ currentHealth: float
+# team: String
+
++ takeDamage(screen: GameScreen,
+damage: float, projectileTeam: String)
++ move(x: float, y: float)
++ draw(batch: SpriteBatch, elapsedTime: float)
+}
+
+class com.engteam14.yorkpirates.ScoreManager {
+- score: int
++ Add(amount: int)
++ Get(): int
++ GetString(): String
+}
+
+class com.engteam14.yorkpirates.HUD {
+- tutorialComplete: boolean
+- canEndGame: boolean
+
+- DISTANCE_GOAL: int
+- POINT_GOAL: int
+- DISTANCE_REWARD: int
+- POINT_REWARD: int
+
++ renderStage(screen: GameScreen)
+}
+
+class com.engteam14.yorkpirates.College {
++ {static} capturedCount: int
+
+- splashTime: float
+- doBloodSplash: boolean
+- collegeName: String
+
++ update(screen: GameScreen)
++ addBoat(x: float, y: float, rotation: float)
+}
+
+class com.engteam14.yorkpirates.TitleScreen {
+- gameStart()
+}
+
+class com.engteam14.yorkpirates.HealthBar {
+- startWidth: float
+
++ resize(currentValue: float)
+}
+
+class com.engteam14.yorkpirates.EndScreen {
+}
+
+class com.engteam14.yorkpirates.Player {
+- {static} HEALTH: int
+- {static} POINT_FREQUENCY: int
+- {static} SPEED: float
+- {static} CAMERA_SLACK: float
+
+- distance: float
+- doBloodSplash: boolean
+
++ update(screen: GameScreen,
+camera: OrthographicCamera)
+}
+
+class com.engteam14.yorkpirates.PauseScreen {
+- gameContinue()
+}
+
+class com.engteam14.yorkpirates.Indicator {
+- visible: boolean
+}
+
+class com.engteam14.yorkpirates.Projectile {
+- maxDistance: float
+- projectileSpeed: float
+- projectileDamage: float
+
++ update(screen: GameScreen)
+}
+
+com.engteam14.yorkpirates.YorkPirates "1..1" -- "1..1" com.engteam14.yorkpirates.TitleScreen
+
+com.engteam14.yorkpirates.TitleScreen "1..1" - "1..1" com.engteam14.yorkpirates.GameScreen
+com.engteam14.yorkpirates.GameScreen "1..1" - "1..1" com.engteam14.yorkpirates.PauseScreen
+com.engteam14.yorkpirates.GameScreen "1..1" - "1..1" com.engteam14.yorkpirates.EndScreen
+com.engteam14.yorkpirates.PauseScreen "1..1" - "1..1" com.engteam14.yorkpirates.EndScreen
+com.engteam14.yorkpirates.EndScreen "1..1" -- "1..1" com.engteam14.yorkpirates.TitleScreen
+
+com.engteam14.yorkpirates.GameScreen "1..1" -- "0..*" com.engteam14.yorkpirates.GameObject
+com.engteam14.yorkpirates.GameScreen "1..1" -- "1..*" com.engteam14.yorkpirates.ScoreManager
+com.engteam14.yorkpirates.GameScreen "1..1" -- "1..1" com.engteam14.yorkpirates.HUD
+
+com.engteam14.yorkpirates.Player "1..1" -- "1..1" com.engteam14.yorkpirates.HealthBar
+com.engteam14.yorkpirates.College "1..1" -- "1..1" com.engteam14.yorkpirates.HealthBar
+
+com.engteam14.yorkpirates.College "0..*" -- "1..1" com.engteam14.yorkpirates.Projectile
+com.engteam14.yorkpirates.Player "0..*" - "1..1" com.engteam14.yorkpirates.Projectile
+com.engteam14.yorkpirates.Indicator "1..1" - "1..1" com.engteam14.yorkpirates.College
+
+com.engteam14.yorkpirates.GameScreen -- com.engteam14.yorkpirates.College
+com.engteam14.yorkpirates.GameScreen -- com.engteam14.yorkpirates.Player
+
+@enduml

@@ -7,7 +7,12 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import yorkpirates.GdxTestRunner;
+
+//DONE
+@RunWith(GdxTestRunner.class)
 public class GameObjectTest {
 
     private GameObject obj;

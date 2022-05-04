@@ -4,8 +4,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import javax.management.ValueExp;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
@@ -57,23 +55,23 @@ public class GameScreen extends ScreenAdapter {
     public Music music;
 
     // Main classes
-    private final YorkPirates game;
+    private YorkPirates game;
 
     // Player
-    private Player player;
+    public Player player;
     private String playerName;
     private Vector3 followPos;
     private boolean followPlayer = false;
 
     // UI & Camera
-    private final HUD gameHUD;
-    private final SpriteBatch HUDBatch;
-    private final OrthographicCamera HUDCam;
-    private final FitViewport viewport;
+    private HUD gameHUD;
+    private SpriteBatch HUDBatch;
+    private OrthographicCamera HUDCam;
+    private FitViewport viewport;
 
     // Tilemap
-    private final TiledMap tiledMap;
-    private final OrthogonalTiledMapRenderer tiledMapRenderer;
+    private TiledMap tiledMap;
+    private OrthogonalTiledMapRenderer tiledMapRenderer;
 
     // Trackers
     private float elapsedTime = 0;
@@ -91,7 +89,9 @@ public class GameScreen extends ScreenAdapter {
     public ArrayList<Actor> rains,snows,storms,mortars;
     public static ArrayList<Obstacle> obstacles = new ArrayList<Obstacle>();
     
-    
+    public GameScreen() {
+        
+    }
 
     /**
      * Initialises the main game screen, as well as relevant entities and data.
@@ -105,7 +105,7 @@ public class GameScreen extends ScreenAdapter {
         loot = new ScoreManager();
 
         // Initialise HUD
-        HUDBatch = new SpriteBatch();
+        if (Gdx.gl20 != null) HUDBatch = new SpriteBatch();
         HUDCam = new OrthographicCamera();
         HUDCam.setToOrtho(false, game.camera.viewportWidth, game.camera.viewportHeight);
         viewport = new FitViewport( Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), HUDCam);
@@ -146,20 +146,20 @@ public class GameScreen extends ScreenAdapter {
         College newCollege;
 
         // Add alcuin
-        newCollege = new College(this,new Texture("alcuin.png"), 1492, 672, 0.4f, 50, 50, "Alcuin", enemyTeam, player, new Texture("alcuin_boat.png"), new Texture("alcuin_2.png"),new Texture("alcuin.png"));
+        newCollege = new College(new Texture("alcuin.png"), 1492, 672, 0.4f, 50, 50, "Alcuin", enemyTeam, player, new Texture("alcuin_boat.png"), new Texture("alcuin_2.png"),new Texture("alcuin.png"));
         newCollege.addBoat(90, -50, -60);
         newCollege.addBoat(-90, -40, -150);
         newCollege.addBoat(-40, -100, 0);
         colleges.add(newCollege);
 
         // Add derwent
-        newCollege = (new College(this,new Texture("derwent.png"), 1815, 2105, 0.8f, 50, 50, "Derwent", enemyTeam, player, new Texture("derwent_boat.png"), new Texture("derwent_2.png"),new Texture("derwent.png")));
+        newCollege = (new College(new Texture("derwent.png"), 1815, 2105, 0.8f, 50, 50, "Derwent", enemyTeam, player, new Texture("derwent_boat.png"), new Texture("derwent_2.png"),new Texture("derwent.png")));
         newCollege.addBoat(-100, -20, 60);
         newCollege.addBoat(-100, -60, 70);
         colleges.add(newCollege);
 
         // Add langwith
-        newCollege = (new College(this,new Texture("langwith.png"), 1300, 1530, 1.0f, 50, 50, "Langwith", enemyTeam, player, new Texture("langwith_boat.png"), new Texture("langwith_2.png"),new Texture("langwith.png")));
+        newCollege = (new College(new Texture("langwith.png"), 1300, 1530, 1.0f, 50, 50, "Langwith", enemyTeam, player, new Texture("langwith_boat.png"), new Texture("langwith_2.png"),new Texture("langwith.png")));
         newCollege.addBoat(-150, -20, 60);
         newCollege.addBoat(-120, 10, -60);
         newCollege.addBoat(-10, -20, 230);
@@ -168,7 +168,7 @@ public class GameScreen extends ScreenAdapter {
         colleges.add(newCollege);
 
         // Add goodricke
-        colleges.add(new College(this,new Texture("goodricke.png"), 700, 525, 0.7f, 5000, 50, "Home",playerTeam,player, new Texture("ship1.png"), new Texture("goodricke.png"), null));
+        colleges.add(new College(new Texture("goodricke.png"), 700, 525, 0.7f, 5000, 50, "Home",playerTeam,player, new Texture("ship1.png"), new Texture("goodricke.png"), null));
 
         // Initialise projectiles array to be used storing live projectiles
         projectiles = new HashSet<>();
@@ -297,7 +297,7 @@ public class GameScreen extends ScreenAdapter {
             int y = (int)Math.floor(Math.random()*(((Gdx.graphics.getHeight()/2)+200) - ((Gdx.graphics.getHeight()/2)-200)+1) + (Gdx.graphics.getHeight()/2)-100);
             int size = (int)Math.floor(Math.random()*(80-40+1)+40);
 
-            Rain rrain = new Rain(x, y, size,size,rain,0.6f);
+            Rain rrain = new Rain(x, y, size,size,rain,0.6f, Gdx.graphics.getHeight());
             rains.add(rrain);
         }
     }
@@ -333,7 +333,7 @@ public class GameScreen extends ScreenAdapter {
             int y = (int)Math.floor(Math.random()*(((Gdx.graphics.getHeight()/2)-200) - ((Gdx.graphics.getHeight()/2)+200)+1) + (Gdx.graphics.getHeight()/2)+200);
             int size = (int)Math.floor(Math.random()*(80-40+1)+40);
          
-            Rain rrain = new Rain(x, y, size,size,rain,0.6f);
+            Rain rrain = new Rain(x, y, size,size,rain,0.6f,Gdx.graphics.getHeight());
             storms.add(rrain);
             
         }
@@ -598,7 +598,7 @@ public class GameScreen extends ScreenAdapter {
             String toLoadCollegeName = toLoadCollege.collegeName;
             String newteam = XmlLoad.LoadCollegeTeam(toLoadCollegeName);
             Float[] newpos = XmlLoad.LoadCollegePosition(toLoadCollegeName);
-            College addCollege = new College(this,toLoadCollege.uncapturedTexture, newpos[0], newpos[1], toLoadCollege.scale, toLoadCollege.maxHealth, 50, toLoadCollege.collegeName, newteam, player, toLoadCollege.boatTexture, toLoadCollege.capturedTexture, toLoadCollege.uncapturedTexture);
+            College addCollege = new College(toLoadCollege.uncapturedTexture, newpos[0], newpos[1], toLoadCollege.scale, toLoadCollege.maxHealth, 50, toLoadCollege.collegeName, newteam, player, toLoadCollege.boatTexture, toLoadCollege.capturedTexture, toLoadCollege.uncapturedTexture);
             //adds boats to college using xml file (currently kinda broken)
             for (Float[] newBoat : XmlLoad.LoadCollegeBoats(toLoadCollegeName)) {
                 System.out.println(String.valueOf(newBoat[0]));
@@ -678,6 +678,8 @@ public class GameScreen extends ScreenAdapter {
      * @return  The main game class.
      */
     public YorkPirates getMain() { return game; }
+
+    public void setMain(YorkPirates game) { this.game = game; }
 
     /**
      * Get the game's HUD.

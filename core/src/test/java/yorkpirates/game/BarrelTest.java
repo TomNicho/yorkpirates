@@ -10,19 +10,17 @@ import yorkpirates.GdxTestRunner;
 
 //DONE
 @RunWith(GdxTestRunner.class)
-public class SnowTest {
+public class BarrelTest {
     
-    private Snow s;
+    private Barrel b;
 
     @Before
     public void init() {
-        s = new Snow(0, 0, 100, 100, null, 1f);
+        b = new Barrel(null, 0, 0, 100, 100, "neutral", 0, BarrelType.BROWN);
     }
 
     @Test
-    public void actTest() {
-        s.act(1f);
-        assertEquals(s.getWidth(), 105f, 0.1f);
-        assertEquals(s.getHeight(), 105f, 0.1f);
+    public void damageTest() {
+        assertEquals(40, b.damage, 0.1f);
     }
 }

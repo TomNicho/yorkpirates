@@ -4,31 +4,23 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
-import yorkpirates.GdxTestRunner;
-
-@RunWith(GdxTestRunner.class)
-public class GameScreenTest {
-
-    private GameScreen gs;
+public class PauseScreenTest {
+    
     private YorkPirates yp;
+    private GameScreen gs;
+    private PauseScreen ps;
 
     @Before
     public void init() {
         yp = new YorkPirates();
         yp.create();
         gs = new GameScreen(yp);
+        ps = new PauseScreen(yp, gs);
     }
 
     @Test
     public void generalTest() {
-        assertNotNull(gs);
-    }
-
-    @Test
-    public void updateTest() {
-        gs.update();
-        assertNotNull(gs);
+        assertNotNull(ps);
     }
 }

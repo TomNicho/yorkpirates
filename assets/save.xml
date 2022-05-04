@@ -1,35 +1,14 @@
 <all>
 	<player>
-		<x>880.1548</x>
-		<y>552.02527</y>
+		<x>881.67053</x>
+		<y>554.3335</y>
 		<weather>None</weather>
 		<health>200.0</health>
 		<speed>70.0</speed>
-		<damage>10.0</damage>
-		<armour>-3.0</armour>
+		<damage>30.0</damage>
+		<armour>3.0</armour>
 	</player>
 	<colleges>
-		<Derwent>
-			<x>1815.0</x>
-			<y>2105.0</y>
-			<team>ENEMY</team>
-			<boats>
-				<boat>
-					<x>-100.0</x>
-					<y>-20.0</y>
-				</boat>
-				<boat>
-					<x>-100.0</x>
-					<y>-60.0</y>
-				</boat>
-			</boats>
-		</Derwent>
-		<Home>
-			<x>700.0</x>
-			<y>525.0</y>
-			<team>PLAYER</team>
-			<boats/>
-		</Home>
 		<Alcuin>
 			<x>1492.0</x>
 			<y>672.0</y>
@@ -49,6 +28,21 @@
 				</boat>
 			</boats>
 		</Alcuin>
+		<Derwent>
+			<x>1815.0</x>
+			<y>2105.0</y>
+			<team>ENEMY</team>
+			<boats>
+				<boat>
+					<x>-100.0</x>
+					<y>-20.0</y>
+				</boat>
+				<boat>
+					<x>-100.0</x>
+					<y>-60.0</y>
+				</boat>
+			</boats>
+		</Derwent>
 		<Langwith>
 			<x>1300.0</x>
 			<y>1530.0</y>
@@ -76,6 +70,12 @@
 				</boat>
 			</boats>
 		</Langwith>
+		<Home>
+			<x>700.0</x>
+			<y>525.0</y>
+			<team>PLAYER</team>
+			<boats/>
+		</Home>
 	</colleges>
 	<obstacles>
 		<barrel>

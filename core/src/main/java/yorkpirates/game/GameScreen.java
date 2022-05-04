@@ -138,7 +138,7 @@ public class GameScreen extends ScreenAdapter {
 
         // Initialise tilemap
         tiledMap = new TmxMapLoader().load("FINAL_MAP.tmx");
-        tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
+        if (Gdx.gl20 != null) tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 
         // Initialise colleges
         College.capturedCount = 0;
@@ -287,6 +287,7 @@ public class GameScreen extends ScreenAdapter {
 
 
     }
+
     private void generateRain(){
         Texture rain = new Texture(Gdx.files.internal("rain.png"));
 
@@ -301,6 +302,7 @@ public class GameScreen extends ScreenAdapter {
             rains.add(rrain);
         }
     }
+
     private void generateSnow(){
         Texture snow = new Texture(Gdx.files.internal("snow.png"));
 
@@ -342,6 +344,7 @@ public class GameScreen extends ScreenAdapter {
         RectangleColour stormback = new RectangleColour(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),new Color(0,0,0,0.3f));
         storms.add(stormback);
     }
+
     private void initWeatherEvents(){
         //animations
         rains = new ArrayList<Actor>();
@@ -443,7 +446,7 @@ public class GameScreen extends ScreenAdapter {
     /**
      * Is called once every frame. Used for game calculations that take place before rendering.
      */
-    private void update() {
+    public void update() {
 
         float delta = Gdx.graphics.getDeltaTime();
 

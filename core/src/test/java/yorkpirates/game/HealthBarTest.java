@@ -3,9 +3,14 @@ package yorkpirates.game;
 import com.badlogic.gdx.math.Vector2;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import yorkpirates.GdxTestRunner;
 
 import static org.junit.Assert.assertEquals;
 
+//DONE
+@RunWith(GdxTestRunner.class)
 public class HealthBarTest {
 
     private HealthBar hb;

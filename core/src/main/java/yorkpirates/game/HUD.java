@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Scaling;
+import com.badlogic.gdx.utils.TimeUtils;
 
 import static java.lang.Math.abs;
 
@@ -29,6 +30,7 @@ public class HUD {
     private final Label tutorialLabel;
     private boolean tutorialComplete = false;
     private boolean canEndGame = false;
+    private Label saveLoadLabel;
 
     // Shop
     private final Table shop;
@@ -60,6 +62,9 @@ public class HUD {
     private final int DISTANCE_REWARD = MathUtils.random(17,23);
     private final int POINT_REWARD = MathUtils.random(13,17);
 
+    private long lastImageChange = 0;
+    private String currImage;
+
     /**
      * Generates a HUD object within the game that controls elements of the UI.
      * @param screen    The game screen which this is attached to.
@@ -72,9 +77,8 @@ public class HUD {
         skin.addRegions(atlas);
         screenWidth = Gdx.graphics.getWidth();
         screenHeight = Gdx.graphics.getHeight();
+
         // Generate stage and table
-        stage = new Stage(screen.getViewport());
-        Gdx.input.setInputProcessor(stage);
         mainTable = new Table();
         mainTable.setFillParent(true);
         mainTable.setTouchable(Touchable.enabled);
@@ -92,7 +96,7 @@ public class HUD {
         // Create tutorial actors
         Image tutorialImg = new Image(screen.getMain().keyboard.getKeyFrame(0f));
         tutorialImg.setScaling(Scaling.fit);
-        tutorialLabel = new Label("WASD or Arrow Keys\n to Move.", skin);
+        tutorialLabel = new Label("WASD to Move.", skin);
 
         // Create score related actors
         Image coin = new Image(new Texture(Gdx.files.internal("loot.png")));
@@ -144,9 +148,13 @@ public class HUD {
         // Create tutorial placeholder
         tutorial = new Table();
         tutorial.setBackground(tracker.getBackground());
+        
         this.tutorialImg = tutorial.add(tutorialImg).expand().fill().minSize(200f).maxSize(500f);
         tutorial.row();
         tutorial.add(tutorialLabel);
+        saveLoadLabel = new Label("Press k to save and l to load", skin);
+        saveLoadLabel.setBounds(10, 35, 16, 9);
+       
         if(YorkPirates.DEBUG_ON) tutorial.setDebug(true);
 
         // Create shop prompt
@@ -188,38 +196,52 @@ public class HUD {
         speedLbl = new Label("0mph", skin);
         speedLbl .setPosition(Gdx.graphics.getWidth() - 300, Gdx.graphics.getHeight() - 100);
         speedLbl.setFontScale(0.8f);
-        stage.addActor(speedLbl);
 
         //powerup
         powerLbl = new Label("no power up", skin);
         powerLbl .setPosition(Gdx.graphics.getWidth() - 300, Gdx.graphics.getHeight() - 200);
         powerLbl.setFontScale(0.8f);
-        stage.addActor(powerLbl);
+    
+
+        shop.setVisible(false);
+
+        if (Gdx.gl20 == null) return;
+
+        stage = new Stage(screen.getViewport());
+        Gdx.input.setInputProcessor(stage);
 
         // Add actors to the stage
+        stage.addActor(speedLbl);
+        stage.addActor(powerLbl);
         stage.addActor(mainTable);
         stage.addActor(shop);
         stage.addActor(openShop);
+        stage.addActor(saveLoadLabel);
 
         shop.setVisible(false);
+
+        lastImageChange = TimeUtils.millis();
     }
+
     public static Label AddWeatherLabel(String text){
         // Add table to the stage
         // Skin testSkin = new Skin();
         Label testlbl = new Label(text,skin);
         
-        stage.addActor(testlbl);
+        if (Gdx.gl20 != null) stage.addActor(testlbl);
         return testlbl;
     }
     public static void UpdateWeatherLabel(String text,Label l){
         l.setText(text);
        
         GlyphLayout glyphLayout = new GlyphLayout();
-        glyphLayout.setText(skin.getFont("Raleway-Bold"), text);
+
+        if (skin != null) {
+            glyphLayout.setText(skin.getFont("Raleway-Bold"), text);
+        }
 
         int labelWidth = (int)glyphLayout.width;
         int labelHeight = (int)glyphLayout.height;
-        // System.out.println(labelWidth + " | " + labelHeight);
         l.setPosition(screenWidth /2 - labelWidth / 2, screenHeight / 2 - labelHeight /2);
     }
     /**
@@ -243,20 +265,14 @@ public class HUD {
         damage.setText(currentDamage);
         armour.setText(currentArmour);
         speed.setText(currentSpeed);
-
+        
         // Calculate which part of the tutorial to show
         if(screen.getPlayer().getDistance() < 2){
             // Movement tutorial
-            Image newimg = new Image(screen.getMain().keyboard.getKeyFrame(screen.getElapsedTime(), true));
-            newimg.setScaling(Scaling.fit);
-            tutorialImg.setActor(newimg);
             tutorialComplete = false;
         } else if(!tutorialComplete){
             // Shooting tutorial
-            Image newimg = new Image(screen.getMain().mouse.getKeyFrame(screen.getElapsedTime(), true));
-            newimg.setScaling(Scaling.fit);
-            tutorialImg.setActor(newimg);
-            tutorialLabel.setText("Click to shoot.");
+            tutorialLabel.setText("Click or use arrow keys to shoot.");
         } else if(canEndGame) {
             // Able to end the game
             tutorial.setVisible(true);
@@ -268,6 +284,7 @@ public class HUD {
         } else {
             // Tutorial complete
             tutorial.setVisible(false);
+            saveLoadLabel.setText("");
         }
 
         // Prompt the player to open the shop

@@ -1,7 +1,6 @@
 package yorkpirates.game;
 
 import java.util.ArrayList;
-
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 
@@ -50,7 +49,7 @@ public class Weather {
    
     public static void DisadvantagePlayer(GameScreen gameScreen, Player player, WeatherType weatherType,ArrayList<Actor> disList) {
         //set players attributes so they have a disadvantage
-        //we also need to draw some rectangles to represent rain/snow so they're
+        //we also need to draw some rectangles to represent rain/snow so their
         //visibility is impeded.
         gameScreen.mortarable = false;
         
@@ -71,6 +70,9 @@ public class Weather {
             player.projectileShootCooldown = 0.9f;
         }
         player.SPEED-=disSpeed;
+
+        if (HUD.stage == null) return;
+
         for(Actor r : disList){
             HUD.stage.addActor(r);
         }
@@ -85,6 +87,9 @@ public class Weather {
         //disadvatange player attributes
         player.SPEED+=disSpeed;
         player.projectileShootCooldown = 0.1f;
+
+        if (HUD.stage == null) return;
+
         Array<Actor> actors = HUD.stage.getActors();
         for(int i = actors.size-1; i> 0;i--){
             Actor a = actors.get(i);

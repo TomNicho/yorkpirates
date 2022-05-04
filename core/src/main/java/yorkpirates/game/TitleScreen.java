@@ -14,7 +14,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 public class TitleScreen extends ScreenAdapter {
     private final YorkPirates game;
-    private final GameScreen nextGame;
+    private GameScreen nextGame;
     private final Stage stage;
 
     private final TextField textBox;
@@ -63,12 +63,27 @@ public class TitleScreen extends ScreenAdapter {
             }});
 
         // Generate buttons
-        ImageTextButton startButton = new ImageTextButton("Play", skin);
+        ImageTextButton easyButton = new ImageTextButton("Easy", skin);
+        ImageTextButton mediumButton = new ImageTextButton("Medium", skin);
+        ImageTextButton hardButton = new ImageTextButton("Hard", skin);
         ImageTextButton quitButton = new ImageTextButton("Exit Game", skin, "Quit");
 
-        startButton.addListener(new ClickListener() {
+        easyButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                gameStart();
+                //System.out.print("Easy");
+                gameStart("easy");
+            }
+        });
+        mediumButton.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                //System.out.print("Medium");
+                gameStart("medium");
+            }
+        });
+        hardButton.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                //System.out.print("Hard");
+                gameStart("hard");
             }
         });
         quitButton.addListener(new ClickListener() {
@@ -91,7 +106,11 @@ public class TitleScreen extends ScreenAdapter {
 
         // Add buttons to table
         table.row();
-        table.add(startButton).expand();
+        table.add(easyButton).expand();
+        table.row();
+        table.add(mediumButton).expand();
+        table.row();
+        table.add(hardButton).expand();
         table.row();
         table.add(quitButton).expand();
 
@@ -128,23 +147,29 @@ public class TitleScreen extends ScreenAdapter {
      */
     private void update(){
         if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
-            gameStart();
+            gameStart("medium");
         }
     }
 
     /**
      * Is called to create a new game screen.
      */
-    private void gameStart(){
+       private void gameStart(String difflvl){
         // Get player name
         String playerName;
         if ( textBox.getText().equals("Name (optional)") || textBox.getText().equals("")) {
             playerName = "Player";
-
+        
         } else{
             playerName = textBox.getText();
         }
+        
+        // Set difficulty
+        game.difficulty = difflvl;
+        
         // Set player name and unpause game
+        nextGame = new GameScreen(game);
+
         nextGame.setPaused(false);
         nextGame.setPlayerName(playerName);
         game.setScreen(nextGame);

@@ -13,9 +13,14 @@ import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class EndScreen extends ScreenAdapter {
-    private final YorkPirates game;
-    private final Stage endStage;
-    private final GameScreen screen;
+    private YorkPirates game;
+    private Stage endStage;
+    private GameScreen screen;
+
+
+    public EndScreen() {
+
+    }
 
     /**
      * Initialises the title screen, as well as relevant textures and data it may contain.
@@ -111,7 +116,7 @@ public class EndScreen extends ScreenAdapter {
     /**
      * Is called once every frame. Used for calculations that take place before rendering / inputs.
      */
-    private void update(){
+    public void update(){
         if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER) || Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
             game.setScreen(new TitleScreen(game));
         }

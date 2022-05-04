@@ -12,10 +12,10 @@ The new game can be [downloaded](https://github.com/engteam14/yorkpirates/releas
 
 
 - [**GitHub**](https://github.com/engteam14/yorkpirates) - Our GitHub repository contains all the code for the project, as well as downloads.
-- [**Deliverables**](deliverables) - All the project deliverables will be listed here.
-- [**Plan**](plan) - Information about how the project was planned throughout development is shown here.
-- [**Use Case**](usecase) - Shows our planned use case for the game.
-- [**Files**](files) - Any additional files are listed here.
+- [**Deliverables**](https://tomnicho.github.io/yorkpirates/deliverables) - All the project deliverables will be listed here.
+- [**Plan**](https://tomnicho.github.io/yorkpirates/plan) - Information about how the project was planned throughout development is shown here.
+- [**Use Case**](https://tomnicho.github.io/yorkpirates/usecase) - Shows our planned use case for the game.
+- [**Files**](https://tomnicho.github.io/yorkpirates/files) - Any additional files are listed here.
 
 ![Game Logo](/media/Logo.gif)
 

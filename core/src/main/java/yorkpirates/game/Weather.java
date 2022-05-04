@@ -49,7 +49,7 @@ public class Weather {
    
     public static void DisadvantagePlayer(GameScreen gameScreen, Player player, WeatherType weatherType,ArrayList<Actor> disList) {
         //set players attributes so they have a disadvantage
-        //we also need to draw some rectangles to represent rain/snow so they're
+        //we also need to draw some rectangles to represent rain/snow so their
         //visibility is impeded.
         gameScreen.mortarable = false;
         

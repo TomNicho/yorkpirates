@@ -4,15 +4,14 @@ layout: default
 # York Pirates!
 ## About This Website
 This is the website for the York Pirates! game.
-This game is made by Bass<sub>2</sub> (Team 14) for an Engineering 1 group project at the University of York.
+This game is made by Bass<sub>2</sub> (Team 14) for an Engineering 1 group project at the University of York. <br/>It has been added to and updated by, team 6.
 
-The game can be [downloaded](https://github.com/engteam14/yorkpirates/releases) from our [GitHub repository](https://github.com/engteam14/yorkpirates).
+The new game can be [downloaded](https://github.com/engteam14/yorkpirates/releases) from our [GitHub repository](https://github.com/TomNicho/yorkpirates).
 
 - [**Home**]() - This page will go over what York Pirates! is, how to play it, and provide information about how our code works.
-- [**GitHub**](https://github.com/engteam14/yorkpirates) - Our GitHub repository contains all the code for the project, as well as downloads.
+- [**GitHub**](https://github.com/TomNicho/yorkpirates) - Our GitHub repository contains all the code for the project, as well as downloads.
 - [**Deliverables**](/deliverables) - All the project deliverables will be listed here.
 - [**Plan**](/plan) - Information about how the project was planned throughout development is shown here.
-- [**Use Case**](/usecase) - Shows our planned use case for the game.
 - [**Files**](/files) - Any additional files are listed here.
 
 ![Game Logo](/media/Logo.gif)
@@ -39,6 +38,21 @@ In addition to our seamless movement, the game contains indicators so that you'r
 ![Combat](/media/Combat2.gif)
 <br/>
 Engage in fierce and engaging combat against colleges that feature individually processed projectiles to keep you on your toes!
+<hr/>
+### Weather and Obstacles
+![weather](/media/weather.gif)
+<br/>
+Be careful not to get stuck in a weather event, these will slow you down!
+<hr/>
+### Power ups!
+![power](/media/power_ups.gif)
+<br/>
+Power ups are located across the map, these will aid you in combat, giving you strength and agility.
+<hr/>
+### Shop
+![shop](/media/shop.gif)
+<br/>
+Nisarrr our local shop will help you when you need it most, buy speed boosts, armour and damage upgrades.
 <hr/>
 ### Game Over...
 ![Game Over](/media/Game_Over.gif)
@@ -113,11 +127,39 @@ public class ScreenName extends ScreenAdapter {
 
 <hr/>
 
+### Adding Colleges
+
+Adding colleges is easy, and adding enemy ships to the college is even easier.
+
+```java
+    College newCollege;
+     newCollege = new College(this,new Texture("alcuin.png"), 1492, 672, 0.4f, 50, 50, "Alcuin", enemyTeam, player, new Texture("alcuin_boat.png"), new Texture("alcuin_2.png"));
+
+     newCollege.addBoat(30, -20, -60);
+     colleges.add(newCollege);
+```
+The enemy ships now follow you and shoot at you while you move.
+<hr/>
+
+### Weather animation
+
+The weather is animated, not using threads but by using time difference.
+
+```java
+    public void act(float delta) {
+        if(getY() <= (Gdx.graphics.getHeight()/2)-200){
+            setPosition(getX(),(Gdx.graphics.getHeight()/2)+200);
+        }
+        setPosition(getX(), getY() - dropSpeed);
+    }
+```
+This allows the weather animation to run a lot more smoothly.
+<hr/>
+
 ### TiledMap
 Using LibGDX's package for Tiled maps is the easiest way to rapidly produce gameplay levels.
 The software [Tiled](https://www.mapeditor.org) can be used to produce levels, with easy to use wide-ranging functionality, it's the industry's best for a reason!
 <br/><br/>![Tiled](/media/tiled.gif)
 <br/><br/>Maps from Tiled can be easily imported into LibGDX, and we've even implemented our own collision system around it - ready out of the box!
 
-## Now's the best time to go Bass<sup>2</sup>!
-[Check out](https://github.com/engteam14/yorkpirates) our repository on GitHub!
+[Check out](https://github.com/TomNicho/yorkpirates) our repository on GitHub!

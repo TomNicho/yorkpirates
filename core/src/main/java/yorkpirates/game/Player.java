@@ -41,10 +41,12 @@ public class Player extends GameObject {
     public Label weatherLabel;
     private WeatherType currentWeatherType= WeatherType.NONE;
 
+    //powerups
+    public PowerType activePower;
+    private long LastPowered = 0;
+
     /**
      * Generates a generic object within the game with animated frame(s) and a hit-box.
-     * @param frames    The animation frames, or a single sprite.
-     * @param fps       The number of frames to be displayed per second.
      * @param x         The x coordinate within the map to initialise the object at.
      * @param y         The y coordinate within the map to initialise the object at.
      * @param width     The size of the object in the x-axis.
@@ -65,9 +67,9 @@ public class Player extends GameObject {
     /**
      * Called once per frame. Used to perform calculations such as player/camera movement.
      * @param screen    The main game screen.
-     * @param camera    The player camera.
      */
-    public void update(GameScreen screen, OrthographicCamera camera){
+    @Override
+    public int update(GameScreen screen, float delta){
         Vector2 oldPos = new Vector2(x,y); // Stored for next-frame calculations
 
         // Get input movement
@@ -76,7 +78,17 @@ public class Player extends GameObject {
 
         // Calculate collision && movement
         if (horizontal != 0 || vertical != 0){
-            move(SPEED *horizontal, SPEED *vertical);
+
+            //adjusts for speed powerup
+            float movespeed = SPEED;
+            if (this.activePower == PowerType.SPEED){
+                movespeed = movespeed + 50;
+            }
+            if (this.activePower == PowerType.DAMAGE){
+                movespeed = movespeed + 150;
+            }
+
+            move(movespeed * horizontal, movespeed * vertical, delta);
             previousDirectionX = horizontal;
             previousDirectionY = vertical;
             if (safeMove(screen.getMain().edges)) {
@@ -103,7 +115,7 @@ public class Player extends GameObject {
         distance += Math.pow((Math.pow((x - oldPos.x),2f) + Math.pow((y - oldPos.y),2f)),0.5f)/10f;
 
         // Camera Calculations
-        ProcessCamera(screen, camera);
+        ProcessCamera(screen, screen.getMain().camera);
 
         // Blood splash calculations
         if(doBloodSplash){
@@ -121,6 +133,18 @@ public class Player extends GameObject {
             playerHealth.resize(currentHealth);
         }
 
+        //healing power up
+        if (activePower == PowerType.HEAL){
+            currentHealth += 0.2;
+            if(currentHealth > maxHealth) currentHealth = maxHealth;
+            playerHealth.resize(currentHealth);
+        }
+
+        if (TimeUtils.timeSinceMillis(LastPowered) > 10000){
+            this.activePower = PowerType.NOTHING;
+            HUD.powerLbl.setText("no power up");
+        }
+
         //collide with obstacle
         for(Iterator<Obstacle> it = screen.obstacles.iterator(); it.hasNext();){
             Obstacle o = it.next();
@@ -135,15 +159,47 @@ public class Player extends GameObject {
                         screen.loot.Add(randMoney);
                     }
                     it.remove();
-                }else{ 
-                    
+                }else if(o instanceof PowerUp){
+                    PowerUp p = (PowerUp)o;
+                    if(p.type == PowerType.SPEED){
+                        this.LastPowered = TimeUtils.millis();
+                        this.activePower = PowerType.SPEED;
+                        HUD.powerLbl.setText("speed boost");
+                        it.remove();
+                    }
+                    if(p.type == PowerType.FIRERATE){
+                        this.LastPowered = TimeUtils.millis();
+                        this.activePower = PowerType.FIRERATE;
+                        HUD.powerLbl.setText("automatic");
+                        it.remove();
+                    }
+                    if(p.type == PowerType.DAMAGE){
+                        this.LastPowered = TimeUtils.millis();
+                        this.activePower = PowerType.DAMAGE;
+                        HUD.powerLbl.setText("BIG SPEED");
+                        it.remove();                        
+                    }
+                    if(p.type == PowerType.IMMUNE){
+                        this.LastPowered = TimeUtils.millis();
+                        this.activePower = PowerType.IMMUNE;
+                        HUD.powerLbl.setText("immunity");
+                        it.remove();                        
+                    }
+                    if(p.type == PowerType.HEAL){
+                        this.LastPowered = TimeUtils.millis();
+                        this.activePower = PowerType.HEAL;
+                        HUD.powerLbl.setText("healing");
+                        it.remove();                        
+                    }
+                }else{
+                    //must be iceberg
                     takeDamage(screen, o.damage, "ENEMY");
-                    move(1000 * -previousDirectionX, 1000 * -previousDirectionY);
-                    
+                    move(1500 * -previousDirectionX, 1500 * -previousDirectionY, delta);
                 }
             }
         }
-        
+
+        return 0;
     }
 
     /**
@@ -166,11 +222,17 @@ public class Player extends GameObject {
      * @param y     The amount to move the object within the y-axis.
      */
     @Override
-    public void move(float x, float y){
+    public void move(float x, float y, float delta){
         this.x += x * Gdx.graphics.getDeltaTime();
         this.y += y * Gdx.graphics.getDeltaTime();
-        HUD.speedLbl.setText(SPEED + "mph");
-        playerHealth.move(this.x, this.y + height/2 + 2f); // Healthbar moves with player
+        float speedtext = SPEED;
+        if (activePower == PowerType.SPEED){
+            speedtext += 50;
+        }else if(activePower == PowerType.DAMAGE){
+            speedtext += 1000;
+        }
+        HUD.speedLbl.setText(speedtext + "mph");
+        playerHealth.move(this.x, this.y + height/2 + 2f, delta); // Healthbar moves with player
     }
     
     public void checkForWeather(GameScreen gameScreen){
@@ -210,8 +272,11 @@ public class Player extends GameObject {
     @Override
     public void takeDamage(GameScreen screen, float damage, String projectileTeam){
         timeLastHit = TimeUtils.millis();
+        //immunity power up
+        if (activePower != PowerType.IMMUNE){
         currentHealth -= damage + ARMOUR;
         doBloodSplash = true;
+        }
 
         // Health-bar reduction
         playerHealth.resize(currentHealth);

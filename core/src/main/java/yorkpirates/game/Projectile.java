@@ -1,7 +1,6 @@
 package yorkpirates.game;
 
 import com.badlogic.gdx.graphics.Texture;
-
 import java.util.Objects;
 
 import static java.lang.Math.*;
@@ -51,7 +50,8 @@ public class Projectile extends GameObject{
         dy = changeInY / scaleFactor;
 
         distanceTravelled = 0;
-        float rangeModifier = min(origin.hitBox.width, origin.hitBox.height);
+        // float rangeModifier = min(origin.hitBox.width, origin.hitBox.height);
+        float rangeModifier = 30;
         maxDistance = rangeModifier * projectileSpeed;
     }
 
@@ -59,13 +59,14 @@ public class Projectile extends GameObject{
      * Called once per frame. Used to perform calculations such as projectile movement and collision detection.
      * @param screen    The main game screen.
      */
-    public int update(GameScreen screen){
+    @Override
+    public int update(GameScreen screen, float delta){
 
         // Movement Calculations
         float xMove = projectileSpeed * dx;
         float yMove = projectileSpeed * dy;
         distanceTravelled += projectileSpeed;
-        move(xMove, yMove);
+        move(xMove, yMove, delta);
 
         // Hit calculations
         if (origin == screen.getPlayer()) {
@@ -80,7 +81,9 @@ public class Projectile extends GameObject{
                 for (Boat b : c.boats) {
                     if (overlaps(b.hitBox)) {
                         if(!Objects.equals(team, b.team)){ // Checks if projectile and boat are on the same time
-                            b.takeDamage(screen, projectileDamage, team);
+                            if(b.takeDamage(screen, projectileDamage)){
+                                c.boats.removeValue(b, true);
+                            }
                         }
                         return 0;
                     }

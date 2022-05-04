@@ -1,6 +1,5 @@
 package yorkpirates.game;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -26,7 +25,7 @@ public class GameObject {
      * @param height    The size of the object in the y-axis.
      * @param team      The team the object is on.
      */
-    GameObject(Texture texture, float x, float y, float width, float height, String team) {
+    public GameObject(Texture texture, float x, float y, float width, float height, String team) {
         this.texture = texture;
         this.x = x;
         this.y = y;
@@ -50,7 +49,7 @@ public class GameObject {
      * Called when the health of the object needs to be set.
      * @param mh    The health value for the object
      */
-    void setMaxHealth(int mh){
+    public void setMaxHealth(int mh){
         maxHealth = mh;
         currentHealth = maxHealth;
     }
@@ -70,9 +69,13 @@ public class GameObject {
      * @param x     The amount to move the object within the x-axis.
      * @param y     The amount to move the object within the y-axis.
      */
-    public void move(float x, float y){
-        this.x += x * Gdx.graphics.getDeltaTime();
-        this.y += y * Gdx.graphics.getDeltaTime();
+    public void move(float x, float y, float delta){
+        this.x += x * delta;
+        this.y += y * delta;
+    }
+
+    public int update(GameScreen screen, float delta) {
+        return 0;
     }
 
     /**

@@ -26,7 +26,6 @@ public class College extends GameObject {
     public Texture boatTexture, capturedTexture;
     public Array<Boat> boats;
 
-    private GameScreen screen;
 
     /**
      * Generates a college object within the game with animated frame(s) and a hit-box.
@@ -42,7 +41,6 @@ public class College extends GameObject {
         this.capturedTexture = capturedTexture;
         this.boats = new Array<>();
         this.scale = scale;
-        this.screen = gameScreen;
 
         setMaxHealth(maxHealth);
         lastShotFired = 0;
@@ -66,7 +64,8 @@ public class College extends GameObject {
      * Called once per frame. Used to perform calculations such as collision.
      * @param screen    The main game screen.
      */
-    public int update(){
+    @Override
+    public int update(GameScreen screen, float delta){
         direction.move();
         float playerX = screen.getPlayer().x;
         float playerY = screen.getPlayer().y;
@@ -100,7 +99,9 @@ public class College extends GameObject {
         }
 
         for (Boat b : boats) {
-            b.move(playerX, playerY);
+            b.check_collision(screen, playerX, playerY, delta);
+            b.updateHitboxPos();
+            b.fire(screen);
         }
 
         return 0;
@@ -142,10 +143,10 @@ public class College extends GameObject {
 
                 //remove mortars
                 if(collegeName == "Langwith"){
-                    System.out.println("asdssdsasdasdasdasd");
                     for(Weather w : screen.weathers){
                         if(w.xpos == 1380){
                             screen.weathers.remove(w);
+                            Weather.ResetPlayerDisadvantage(screen, screen.getPlayer());
                             break;
                         }
                     }
@@ -153,6 +154,7 @@ public class College extends GameObject {
                     for(Weather w : screen.weathers){
                         if(w.xpos == 1435){
                             screen.weathers.remove(w);
+                            Weather.ResetPlayerDisadvantage(screen, screen.getPlayer());
                             break;
                         }
                     }

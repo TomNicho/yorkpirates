@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Scaling;
+import com.badlogic.gdx.utils.TimeUtils;
 
 import static java.lang.Math.abs;
 
@@ -45,6 +46,7 @@ public class HUD {
     private final Label score;
     private final Label loot;
     public static Label speedLbl;
+    public static Label powerLbl;
     
 
     // Player tasks
@@ -58,6 +60,9 @@ public class HUD {
 
     private final int DISTANCE_REWARD = MathUtils.random(17,23);
     private final int POINT_REWARD = MathUtils.random(13,17);
+
+    private long lastImageChange = 0;
+    private String currImage;
 
     /**
      * Generates a HUD object within the game that controls elements of the UI.
@@ -143,9 +148,11 @@ public class HUD {
         // Create tutorial placeholder
         tutorial = new Table();
         tutorial.setBackground(tracker.getBackground());
+        
         this.tutorialImg = tutorial.add(tutorialImg).expand().fill().minSize(200f).maxSize(500f);
         tutorial.row();
         tutorial.add(tutorialLabel);
+       
         if(YorkPirates.DEBUG_ON) tutorial.setDebug(true);
 
         // Create shop prompt
@@ -189,12 +196,20 @@ public class HUD {
         speedLbl.setFontScale(0.8f);
         stage.addActor(speedLbl);
 
+        //powerup
+        powerLbl = new Label("no power up", skin);
+        powerLbl .setPosition(Gdx.graphics.getWidth() - 300, Gdx.graphics.getHeight() - 200);
+        powerLbl.setFontScale(0.8f);
+        stage.addActor(powerLbl);
+
         // Add actors to the stage
         stage.addActor(mainTable);
         stage.addActor(shop);
         stage.addActor(openShop);
 
         shop.setVisible(false);
+
+        lastImageChange = TimeUtils.millis();
     }
     public static Label AddWeatherLabel(String text){
         // Add table to the stage
@@ -236,20 +251,36 @@ public class HUD {
         damage.setText(currentDamage);
         armour.setText(currentArmour);
         speed.setText(currentSpeed);
-
+        
         // Calculate which part of the tutorial to show
         if(screen.getPlayer().getDistance() < 2){
             // Movement tutorial
-            Image newimg = new Image(screen.getMain().keyboard.getKeyFrame(screen.getElapsedTime(), true));
+            Image newimg = new Image(screen.getMain().keyboard.getKeyFrame(0, false));
             newimg.setScaling(Scaling.fit);
             tutorialImg.setActor(newimg);
             tutorialComplete = false;
         } else if(!tutorialComplete){
             // Shooting tutorial
-            Image newimg = new Image(screen.getMain().mouse.getKeyFrame(screen.getElapsedTime(), true));
+            Image newimg = new Image(screen.getMain().mouse.getKeyFrame(0, false));
             newimg.setScaling(Scaling.fit);
-            tutorialImg.setActor(newimg);
-            tutorialLabel.setText("Click to shoot.");
+            Image keyimg = new Image(screen.getMain().keyboard.getKeyFrame(0, false));
+            keyimg.setScaling(Scaling.fit);
+            if(TimeUtils.timeSinceMillis(lastImageChange) >= 1500){
+                if(currImage == null){
+                    currImage = "new";
+                }else{
+                    if(currImage == "new"){
+                        tutorialImg.setActor(newimg);
+                        currImage = "key";
+                    }else{
+                        tutorialImg.setActor(keyimg);
+                        currImage = "new";
+                    }
+                }
+                lastImageChange = TimeUtils.millis();
+            }
+           
+            tutorialLabel.setText("Click or use arrow keys to shoot.");
         } else if(canEndGame) {
             // Able to end the game
             tutorial.setVisible(true);

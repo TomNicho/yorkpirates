@@ -7,8 +7,8 @@ public class Shop extends GameObject {
     public String name;
     public boolean activated;
 
-    public Shop(Texture shopImage, float x, float y, float scale, Boolean activated, String name){
-        super(shopImage, x, y, shopImage.getWidth()*scale, shopImage.getHeight()*scale, "neutral");
+    public Shop(Texture shopImage, float x, float y, float width, float height, float scale, Boolean activated, String name){
+        super(shopImage, x, y, width, height, "neutral");
         this.activated = activated;
         this.name = name;
     }

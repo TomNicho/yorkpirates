@@ -32,7 +32,7 @@ public class HealthBar extends GameObject {
      * @param y     The value to set the object to within the y-axis.
      */
     @Override
-    public void move(float x, float y){
+    public void move(float x, float y, float delta){
         this.x = x;
         this.y = y;
     }

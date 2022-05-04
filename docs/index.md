@@ -6,7 +6,7 @@ layout: default
 This is the website for the York Pirates! game.
 This game is made by Bass<sub>2</sub> (Team 14) for an Engineering 1 group project at the University of York. <br/>It has been added to and updated by, team 6.
 
-The new game can be [downloaded](https://github.com/engteam14/yorkpirates/releases) from our [GitHub repository](https://github.com/engteam14/yorkpirates).
+The new game can be [downloaded](https://github.com/engteam14/yorkpirates/releases) from our [GitHub repository](https://github.com/TomNicho/yorkpirates).
 
 - [**Home**]() - This page will go over what York Pirates! is, how to play it, and provide information about how our code works.
 - [**GitHub**](https://github.com/TomNicho/yorkpirates) - Our GitHub repository contains all the code for the project, as well as downloads.
@@ -125,6 +125,35 @@ public class ScreenName extends ScreenAdapter {
 }
 ```
 
+<hr/>
+
+### Adding Colleges
+
+Adding colleges is easy, and adding enemy ships to the college is even easier.
+
+```java
+    College newCollege;
+     newCollege = new College(this,new Texture("alcuin.png"), 1492, 672, 0.4f, 50, 50, "Alcuin", enemyTeam, player, new Texture("alcuin_boat.png"), new Texture("alcuin_2.png"));
+
+     newCollege.addBoat(30, -20, -60);
+     colleges.add(newCollege);
+```
+The enemy ships now follow you and shoot at you while you move.
+<hr/>
+
+### Weather animation
+
+The weather is animated, not using threads but by using time difference.
+
+```java
+    public void act(float delta) {
+        if(getY() <= (Gdx.graphics.getHeight()/2)-200){
+            setPosition(getX(),(Gdx.graphics.getHeight()/2)+200);
+        }
+        setPosition(getX(), getY() - dropSpeed);
+    }
+```
+This allows the weather animation to run a lot more smoothly.
 <hr/>
 
 ### TiledMap

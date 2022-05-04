@@ -43,8 +43,6 @@ public class Player extends GameObject {
 
     /**
      * Generates a generic object within the game with animated frame(s) and a hit-box.
-     * @param frames    The animation frames, or a single sprite.
-     * @param fps       The number of frames to be displayed per second.
      * @param x         The x coordinate within the map to initialise the object at.
      * @param y         The y coordinate within the map to initialise the object at.
      * @param width     The size of the object in the x-axis.
@@ -65,7 +63,6 @@ public class Player extends GameObject {
     /**
      * Called once per frame. Used to perform calculations such as player/camera movement.
      * @param screen    The main game screen.
-     * @param camera    The player camera.
      */
     @Override
     public int update(GameScreen screen, float delta){

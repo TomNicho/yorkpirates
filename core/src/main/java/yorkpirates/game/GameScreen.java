@@ -168,13 +168,13 @@ public class GameScreen extends ScreenAdapter {
         shopOpened = false;
 
         // alcuin
-        newShop = new Shop(shopImage, 1510, 620, 0.35f, false, "Alcuin");
+        newShop = new Shop(shopImage, 1510, 620, shopImage.getWidth()*0.35f, shopImage.getHeight()*0.35f, 0.35f, false, "Alcuin");
         shops.add(newShop);
         // derwent
-        newShop = new Shop(shopImage, 1790, 1999, 0.58f, false, "Derwent");
+        newShop = new Shop(shopImage, 1790, 1999,shopImage.getWidth()*0.58f, shopImage.getHeight()*0.58f, 0.58f, false, "Derwent");
         shops.add(newShop);
         //langwith
-        newShop  = new Shop(shopImage, 1500, 1522, 0.45f, false, "Langwith");
+        newShop  = new Shop(shopImage, 1500, 1522,shopImage.getWidth()*0.45f, shopImage.getHeight()*0.45f, 0.45f, false, "Langwith");
         shops.add(newShop);
 
         lastShot = TimeUtils.millis();

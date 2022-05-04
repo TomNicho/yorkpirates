@@ -137,7 +137,7 @@ The most recent version of the game can be downloaded from the releases tab.
 - [Ryan Bulman](https://github.com/ryan-bulman-uni)
 - [Frederick Clarke](https://github.com/clarke-f)
 - [Jack Ellis](https://github.com/jack-ellis123)
-- [Yuaho Hu](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+- [Yuaho Hu](https://github.com/yh2305)
 - [Tom Nicholson](https://github.com/TomNicho)
 - [James Pursglove](https://github.com/JP5457)
 

@@ -26,4 +26,8 @@ Information about the planning of the project can be found here in the form of G
 ## Assessment 2
 
 ![Assessment 2](/media/gantt2.png)
-*Whole of assessment 2 Gantt Chart*
+*Whole of assessment 1 Gantt Chart*
+
+![Assessment 2](/media/gantt2_2.png)
+*Assessment 2 Gantt Chart*
+

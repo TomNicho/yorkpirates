@@ -105,7 +105,7 @@ public class GameScreen extends ScreenAdapter {
         loot = new ScoreManager();
 
         // Initialise HUD
-        HUDBatch = new SpriteBatch();
+        if (Gdx.gl20 != null) HUDBatch = new SpriteBatch();
         HUDCam = new OrthographicCamera();
         HUDCam.setToOrtho(false, game.camera.viewportWidth, game.camera.viewportHeight);
         viewport = new FitViewport( Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), HUDCam);

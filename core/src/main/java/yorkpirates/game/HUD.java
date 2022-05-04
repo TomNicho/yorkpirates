@@ -72,9 +72,8 @@ public class HUD {
         skin.addRegions(atlas);
         screenWidth = Gdx.graphics.getWidth();
         screenHeight = Gdx.graphics.getHeight();
+
         // Generate stage and table
-        stage = new Stage(screen.getViewport());
-        Gdx.input.setInputProcessor(stage);
         mainTable = new Table();
         mainTable.setFillParent(true);
         mainTable.setTouchable(Touchable.enabled);
@@ -188,27 +187,34 @@ public class HUD {
         speedLbl = new Label("0mph", skin);
         speedLbl .setPosition(Gdx.graphics.getWidth() - 300, Gdx.graphics.getHeight() - 100);
         speedLbl.setFontScale(0.8f);
-        stage.addActor(speedLbl);
 
         //powerup
         powerLbl = new Label("no power up", skin);
         powerLbl .setPosition(Gdx.graphics.getWidth() - 300, Gdx.graphics.getHeight() - 200);
         powerLbl.setFontScale(0.8f);
-        stage.addActor(powerLbl);
+    
+
+        shop.setVisible(false);
+
+        if (Gdx.gl20 == null) return;
+
+        stage = new Stage(screen.getViewport());
+        Gdx.input.setInputProcessor(stage);
 
         // Add actors to the stage
+        stage.addActor(speedLbl);
+        stage.addActor(powerLbl);
         stage.addActor(mainTable);
         stage.addActor(shop);
         stage.addActor(openShop);
-
-        shop.setVisible(false);
     }
+
     public static Label AddWeatherLabel(String text){
         // Add table to the stage
         // Skin testSkin = new Skin();
         Label testlbl = new Label(text,skin);
         
-        stage.addActor(testlbl);
+        if (Gdx.gl20 != null) stage.addActor(testlbl);
         return testlbl;
     }
     public static void UpdateWeatherLabel(String text,Label l){

@@ -23,7 +23,7 @@ public class College extends GameObject {
     public final String collegeName;
     public float scale;
 
-    public Texture boatTexture, capturedTexture;
+    public Texture boatTexture, capturedTexture, uncapturedTexture;
     public Array<Boat> boats;
 
 
@@ -34,13 +34,19 @@ public class College extends GameObject {
      * @param name      The name of the college.
      * @param team      The team the college is on.
      */
-    public College(GameScreen gameScreen, Texture texture, float x, float y, float scale, int maxHealth, int boatHealth, String name, String team, Player player, Texture boatTexture, Texture capturedTexture) {
-        super(texture, x, y, texture.getWidth()*scale, texture.getHeight()*scale, team);
+    public College(GameScreen gameScreen, Texture texture, float x, float y, float scale, int maxHealth, int boatHealth, String name, String team, Player player, Texture boatTexture, Texture capturedTexture, Texture uncapturedTexture) {
+        super(texture, x, y, capturedTexture.getWidth()*scale, capturedTexture.getHeight()*scale, team);
 
         this.boatTexture = boatTexture;
+        this.uncapturedTexture = uncapturedTexture;
         this.capturedTexture = capturedTexture;
         this.boats = new Array<>();
         this.scale = scale;
+        if(this.team.equals("ENEMY")){
+            this.texture = texture;
+        } else {
+            this.texture = capturedTexture;
+        }
 
         setMaxHealth(maxHealth);
         lastShotFired = 0;

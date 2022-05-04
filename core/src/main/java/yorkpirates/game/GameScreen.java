@@ -146,20 +146,20 @@ public class GameScreen extends ScreenAdapter {
         College newCollege;
 
         // Add alcuin
-        newCollege = new College(this,new Texture("alcuin.png"), 1492, 672, 0.4f, 50, 50, "Alcuin", enemyTeam, player, new Texture("alcuin_boat.png"), new Texture("alcuin_2.png"),new Texture("alcuin.png"));
+        newCollege = new College(new Texture("alcuin.png"), 1492, 672, 0.4f, 50, 50, "Alcuin", enemyTeam, player, new Texture("alcuin_boat.png"), new Texture("alcuin_2.png"),new Texture("alcuin.png"));
         newCollege.addBoat(90, -50, -60);
         newCollege.addBoat(-90, -40, -150);
         newCollege.addBoat(-40, -100, 0);
         colleges.add(newCollege);
 
         // Add derwent
-        newCollege = (new College(this,new Texture("derwent.png"), 1815, 2105, 0.8f, 50, 50, "Derwent", enemyTeam, player, new Texture("derwent_boat.png"), new Texture("derwent_2.png"),new Texture("derwent.png")));
+        newCollege = (new College(new Texture("derwent.png"), 1815, 2105, 0.8f, 50, 50, "Derwent", enemyTeam, player, new Texture("derwent_boat.png"), new Texture("derwent_2.png"),new Texture("derwent.png")));
         newCollege.addBoat(-100, -20, 60);
         newCollege.addBoat(-100, -60, 70);
         colleges.add(newCollege);
 
         // Add langwith
-        newCollege = (new College(this,new Texture("langwith.png"), 1300, 1530, 1.0f, 50, 50, "Langwith", enemyTeam, player, new Texture("langwith_boat.png"), new Texture("langwith_2.png"),new Texture("langwith.png")));
+        newCollege = (new College(new Texture("langwith.png"), 1300, 1530, 1.0f, 50, 50, "Langwith", enemyTeam, player, new Texture("langwith_boat.png"), new Texture("langwith_2.png"),new Texture("langwith.png")));
         newCollege.addBoat(-150, -20, 60);
         newCollege.addBoat(-120, 10, -60);
         newCollege.addBoat(-10, -20, 230);
@@ -168,7 +168,7 @@ public class GameScreen extends ScreenAdapter {
         colleges.add(newCollege);
 
         // Add goodricke
-        colleges.add(new College(this,new Texture("goodricke.png"), 700, 525, 0.7f, 5000, 50, "Home",playerTeam,player, new Texture("ship1.png"), new Texture("goodricke.png"), null));
+        colleges.add(new College(new Texture("goodricke.png"), 700, 525, 0.7f, 5000, 50, "Home",playerTeam,player, new Texture("ship1.png"), new Texture("goodricke.png"), null));
 
         // Initialise projectiles array to be used storing live projectiles
         projectiles = new HashSet<>();
@@ -598,7 +598,7 @@ public class GameScreen extends ScreenAdapter {
             String toLoadCollegeName = toLoadCollege.collegeName;
             String newteam = XmlLoad.LoadCollegeTeam(toLoadCollegeName);
             Float[] newpos = XmlLoad.LoadCollegePosition(toLoadCollegeName);
-            College addCollege = new College(this,toLoadCollege.uncapturedTexture, newpos[0], newpos[1], toLoadCollege.scale, toLoadCollege.maxHealth, 50, toLoadCollege.collegeName, newteam, player, toLoadCollege.boatTexture, toLoadCollege.capturedTexture, toLoadCollege.uncapturedTexture);
+            College addCollege = new College(toLoadCollege.uncapturedTexture, newpos[0], newpos[1], toLoadCollege.scale, toLoadCollege.maxHealth, 50, toLoadCollege.collegeName, newteam, player, toLoadCollege.boatTexture, toLoadCollege.capturedTexture, toLoadCollege.uncapturedTexture);
             //adds boats to college using xml file (currently kinda broken)
             for (Float[] newBoat : XmlLoad.LoadCollegeBoats(toLoadCollegeName)) {
                 System.out.println(String.valueOf(newBoat[0]));

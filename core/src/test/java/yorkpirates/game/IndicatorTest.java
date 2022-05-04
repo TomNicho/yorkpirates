@@ -25,7 +25,7 @@ public class IndicatorTest {
     @Before 
     public void init() {
         p = new Player(null, 50, 50, 100, 100, "Player", null);
-        c = new College(new Texture("alcuin.png"), 0, 0, 1f, 1000, 100, "College", "Team", p, null, null);
+        c = new College(new Texture("alcuin.png"), 0, 0, 1f, 1000, 100, "College", "Team", p, null, null, null);
         i = new Indicator(c, p, new Texture("homeArrow.png"));
     }
 

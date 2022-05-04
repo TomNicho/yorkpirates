@@ -34,7 +34,7 @@ public class College extends GameObject {
      * @param name      The name of the college.
      * @param team      The team the college is on.
      */
-    public College(GameScreen gameScreen, Texture texture, float x, float y, float scale, int maxHealth, int boatHealth, String name, String team, Player player, Texture boatTexture, Texture capturedTexture, Texture uncapturedTexture) {
+    public College(Texture texture, float x, float y, float scale, int maxHealth, int boatHealth, String name, String team, Player player, Texture boatTexture, Texture capturedTexture, Texture uncapturedTexture) {
         super(texture, x, y, capturedTexture.getWidth()*scale, capturedTexture.getHeight()*scale, team);
 
         this.boatTexture = boatTexture;

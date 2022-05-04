@@ -165,11 +165,8 @@ public class College extends GameObject {
                         }
                     }
                 }
-
                 //set to players team
                 team = GameScreen.playerTeam;
-
-                
             }
         }
     }

@@ -8,7 +8,7 @@ This game is made by Bass<sub>2</sub> (Team 14) for an Engineering 1 group proje
 
 The new game can be [downloaded](https://github.com/engteam14/yorkpirates/releases) from our [GitHub repository](https://github.com/TomNicho/yorkpirates).
 
-- [**Home**]() - This page will go over what York Pirates! is, how to play it, and provide information about how our code works.
+- [**Home**](https://tomnicho.github.io/yorkpirates/) - This page will go over what York Pirates! is, how to play it, and provide information about how our code works.
 
 
 - [**GitHub**](https://github.com/TomNicho/yorkpirates) - Our GitHub repository contains all the code for the project, as well as downloads.

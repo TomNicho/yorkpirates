@@ -88,7 +88,7 @@ public class Player extends GameObject {
                 movespeed = movespeed + 150;
             }
 
-            move(movespeed *horizontal, movespeed *vertical, delta);
+            move(movespeed * horizontal, movespeed * vertical, delta);
             previousDirectionX = horizontal;
             previousDirectionY = vertical;
             if (safeMove(screen.getMain().edges)) {
@@ -159,14 +159,7 @@ public class Player extends GameObject {
                         screen.loot.Add(randMoney);
                     }
                     it.remove();
-                }else{ 
-                    
-                    takeDamage(screen, o.damage, "ENEMY");
-                    move(1000 * -previousDirectionX, 1000 * -previousDirectionY, delta);
-                    
-                }
-
-                if(o instanceof PowerUp){
+                }else if(o instanceof PowerUp){
                     PowerUp p = (PowerUp)o;
                     if(p.type == PowerType.SPEED){
                         this.LastPowered = TimeUtils.millis();
@@ -198,6 +191,10 @@ public class Player extends GameObject {
                         HUD.powerLbl.setText("healing");
                         it.remove();                        
                     }
+                }else{
+                    //must be iceberg
+                    takeDamage(screen, o.damage, "ENEMY");
+                    move(1500 * -previousDirectionX, 1500 * -previousDirectionY, delta);
                 }
             }
         }
@@ -231,6 +228,8 @@ public class Player extends GameObject {
         float speedtext = SPEED;
         if (activePower == PowerType.SPEED){
             speedtext += 50;
+        }else if(activePower == PowerType.DAMAGE){
+            speedtext += 1000;
         }
         HUD.speedLbl.setText(speedtext + "mph");
         playerHealth.move(this.x, this.y + height/2 + 2f, delta); // Healthbar moves with player
@@ -275,8 +274,8 @@ public class Player extends GameObject {
         timeLastHit = TimeUtils.millis();
         //immunity power up
         if (activePower != PowerType.IMMUNE){
-        currentHealth -= damage + ARMOUR;
-        doBloodSplash = true;
+                currentHealth -= damage + ARMOUR;
+                doBloodSplash = true;
         }
 
         // Health-bar reduction

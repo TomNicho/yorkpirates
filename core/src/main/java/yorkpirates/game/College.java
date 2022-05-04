@@ -143,10 +143,10 @@ public class College extends GameObject {
 
                 //remove mortars
                 if(collegeName == "Langwith"){
-                    System.out.println("asdssdsasdasdasdasd");
                     for(Weather w : screen.weathers){
                         if(w.xpos == 1380){
                             screen.weathers.remove(w);
+                            Weather.ResetPlayerDisadvantage(screen, screen.getPlayer());
                             break;
                         }
                     }
@@ -154,6 +154,7 @@ public class College extends GameObject {
                     for(Weather w : screen.weathers){
                         if(w.xpos == 1435){
                             screen.weathers.remove(w);
+                            Weather.ResetPlayerDisadvantage(screen, screen.getPlayer());
                             break;
                         }
                     }

@@ -1,7 +1,6 @@
 package yorkpirates.game;
 
 import java.util.ArrayList;
-
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 

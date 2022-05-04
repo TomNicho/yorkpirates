@@ -16,7 +16,6 @@ The new game can be downloaded from our [here](yorkpirates-1.0.1.jar).
 - [**Plan**](https://tomnicho.github.io/yorkpirates/plan) - Information about how the project was planned throughout development is shown here.
 - [**Use Case**](https://tomnicho.github.io/yorkpirates/usecase) - Shows our planned use case for the game.
 - [**Files**](https://tomnicho.github.io/yorkpirates/files) - Any additional files are listed here.
-- [**Testing**](https://tomnicho.github.io/yorkpirates/test/index.html) - Any additional files are listed here.
 
 ![Game Logo](/media/Logo.gif)
 

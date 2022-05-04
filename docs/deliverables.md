@@ -48,6 +48,8 @@ Project deliverables (stored via Google Drive) can be accessed from this page.
 ## Testing
 [**Google Drive**](https://docs.google.com/document/d/17Zemm-0yW7l6_WjiD3QGo30u1nzGQ9e6VLoqADTvR2c/edit)
 
+[**Testing Report**](https://tomnicho.github.io/yorkpirates/test/index.html)
+
 <hr>
 
 ## Updated Risk Assessment and Mitigation

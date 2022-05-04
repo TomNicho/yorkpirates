@@ -568,12 +568,12 @@ public class GameScreen extends ScreenAdapter {
         }
 
         //call to save the game
-        if(Gdx.input.isKeyJustPressed(Input.Keys.F8) && elapsedTime - lastSave > 0.1f){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.K) && elapsedTime - lastSave > 0.1f){
             saveState(player);
         }
 
         //call to load the game
-        if(Gdx.input.isKeyJustPressed(Input.Keys.F7) && elapsedTime - lastLoad > 0.1f){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.L) && elapsedTime - lastLoad > 0.1f){
             loadSave();
         }
     }

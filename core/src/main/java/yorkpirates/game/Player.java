@@ -274,8 +274,8 @@ public class Player extends GameObject {
         timeLastHit = TimeUtils.millis();
         //immunity power up
         if (activePower != PowerType.IMMUNE){
-        currentHealth -= damage + ARMOUR;
-        doBloodSplash = true;
+                currentHealth -= damage + ARMOUR;
+                doBloodSplash = true;
         }
 
         // Health-bar reduction

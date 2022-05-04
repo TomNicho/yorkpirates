@@ -95,7 +95,7 @@ public class GameScreen extends ScreenAdapter {
      * Initialises the main game screen, as well as relevant entities and data.
      * @param game  Passes in the base game class for reference.
      */
-    public GameScreen(YorkPirates game) {
+    public GameScreen(YorkPirates game, String difficulty) {
         this.game = game;
         playerName = "Player";
         // Initialise points and loot managers
@@ -123,6 +123,16 @@ public class GameScreen extends ScreenAdapter {
         sprites.clear();
         followPos = new Vector3(player.x, player.y, 0f);
         game.camera.position.lerp(new Vector3(760, 510, 0f), 1f);
+
+        // Initialise difficulty
+        if (game.difficulty == "easy"){
+            player.DAMAGE += 10;
+            player.ARMOUR += 3;
+        }
+        if (game.difficulty == "hard"){
+            player.DAMAGE -= 10;
+            player.ARMOUR -= 3;
+        }
 
         // Initialise tilemap
         tiledMap = new TmxMapLoader().load("FINAL_MAP.tmx");

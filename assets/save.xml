@@ -5,6 +5,25 @@
 		<weather>None</weather>
 	</player>
 	<colleges>
+		<Alcuin>
+			<x>1492.0</x>
+			<y>672.0</y>
+			<team>ENEMY</team>
+			<boats>
+				<boat>
+					<x>3014.0</x>
+					<y>1324.0</y>
+				</boat>
+				<boat>
+					<x>2934.0</x>
+					<y>1304.0</y>
+				</boat>
+				<boat>
+					<x>2944.0</x>
+					<y>1274.0</y>
+				</boat>
+			</boats>
+		</Alcuin>
 		<Home>
 			<x>700.0</x>
 			<y>525.0</y>

@@ -39,12 +39,13 @@ Project deliverables (stored via Google Drive) can be accessed from this page.
 ## Implementation
 [**Google Drive**](https://docs.google.com/document/d/1wUtgY5f0ALPfnosdwSVNWjvOoCqXCNg6DTiQHFJ-5Gs/edit)
 
+
+<hr>
+
 ## Risk Assessment and Mitigation
 [**Google Drive**](https://docs.google.com/document/d/1b_fnojXQKeROqU2GnlGMTrem_hXp8rWzFpzoiMvJRCE/edit)
 
 -[**Download**](https://tomnicho.github.io/yorkpirates/documents/Risk2.pdf)
-
-<hr>
 
 ## Updated Architecture
 [**Google Drive**](https://docs.google.com/document/d/1-fs__JSzEWoyCVR_aDwTu9kzOebFla1UKCoh_muJYMs/edit)

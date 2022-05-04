@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 
 import yorkpirates.GdxTestRunner;
 
+//DONE
 @RunWith(GdxTestRunner.class)
 public class RectangleTest {
 

@@ -215,11 +215,13 @@ public class HUD {
         l.setText(text);
        
         GlyphLayout glyphLayout = new GlyphLayout();
-        glyphLayout.setText(skin.getFont("Raleway-Bold"), text);
+
+        if (skin != null) {
+            glyphLayout.setText(skin.getFont("Raleway-Bold"), text);
+        }
 
         int labelWidth = (int)glyphLayout.width;
         int labelHeight = (int)glyphLayout.height;
-        // System.out.println(labelWidth + " | " + labelHeight);
         l.setPosition(screenWidth /2 - labelWidth / 2, screenHeight / 2 - labelHeight /2);
     }
     /**

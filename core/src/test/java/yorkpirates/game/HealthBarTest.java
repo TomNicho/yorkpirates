@@ -9,6 +9,7 @@ import yorkpirates.GdxTestRunner;
 
 import static org.junit.Assert.assertEquals;
 
+//DONE
 @RunWith(GdxTestRunner.class)
 public class HealthBarTest {
 

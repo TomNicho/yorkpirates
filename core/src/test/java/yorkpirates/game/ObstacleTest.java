@@ -8,6 +8,7 @@ import yorkpirates.GdxTestRunner;
 
 import static org.junit.Assert.assertNotNull;
 
+//DONE
 @RunWith(GdxTestRunner.class)
 public class ObstacleTest {
 

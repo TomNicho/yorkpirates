@@ -20,10 +20,14 @@ public class Weather {
         this.weatherType = weatherType;
     
     }
-
+    /**
+     * Displays to the user what weather effect is being encountered
+     * @param weatherType   The type of weather effect
+     * @return              A string describing the weather
+     */
     public static String getWeatherLabelText(WeatherType weatherType){
         String ret = "";
-        
+        // Most weather is displayed by their textures instead of text after updates
         if(weatherType == WeatherType.RAIN){
             ret = "";
         }else if(weatherType == WeatherType.SNOW){
@@ -46,7 +50,13 @@ public class Weather {
         }
         return WeatherType.NONE;
     }
-   
+    /**
+     * Changes the players attributes to debuff them in different weather conditions
+     * @param gameScreen    The main game screen
+     * @param player        The player to be effected
+     * @param weatherType   The type of weather
+     * @param disList       The list of disadvantages
+     */
     public static void DisadvantagePlayer(GameScreen gameScreen, Player player, WeatherType weatherType,ArrayList<Actor> disList) {
         //set players attributes so they have a disadvantage
         //we also need to draw some rectangles to represent rain/snow so their
@@ -77,6 +87,11 @@ public class Weather {
             HUD.stage.addActor(r);
         }
     }
+    /**
+     * Resets the players stats after leaving the weather
+     * @param gameScreen    The main game screen
+     * @param player        The player affected
+     */
     public static void ResetPlayerDisadvantage(GameScreen gameScreen,Player player){
 
         //remove timer

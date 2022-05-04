@@ -49,7 +49,7 @@ public class YorkPirates extends Game {
 
 		// Long animations loaded in at start of the game for better performance
 		logo = getAnimator("logo.png", 20, 10,8);
-		mouse = getAnimator("mouse.png", 20,5, 5);
+		mouse = getAnimator("mouse.png", 1,5, 5);
 		keyboard = getAnimator("keyboard.png", 20,1, 16);
 		enter = getAnimator("enter.png", 20,1, 10);
 

@@ -1,8 +1,7 @@
 package yorkpirates.game;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
+
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
@@ -12,7 +11,6 @@ public class Weather {
 
     public int xpos, ypos, xoff, yoff;
     public WeatherType weatherType;
-    private static Timer t;
 
     private static int disSpeed = 0;
 

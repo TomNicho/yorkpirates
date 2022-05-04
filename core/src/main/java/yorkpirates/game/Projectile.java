@@ -1,8 +1,6 @@
 package yorkpirates.game;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.utils.Array;
-
 import java.util.Objects;
 
 import static java.lang.Math.*;

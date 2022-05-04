@@ -26,7 +26,6 @@ public class College extends GameObject {
     public Texture boatTexture, capturedTexture;
     public Array<Boat> boats;
 
-    private GameScreen screen;
 
     /**
      * Generates a college object within the game with animated frame(s) and a hit-box.
@@ -42,7 +41,6 @@ public class College extends GameObject {
         this.capturedTexture = capturedTexture;
         this.boats = new Array<>();
         this.scale = scale;
-        this.screen = gameScreen;
 
         setMaxHealth(maxHealth);
         lastShotFired = 0;
@@ -101,7 +99,9 @@ public class College extends GameObject {
         }
 
         for (Boat b : boats) {
-            b.move(playerX, playerY, delta);
+            b.check_collision(screen, playerX, playerY, delta);
+            b.updateHitboxPos();
+            b.fire(screen);
         }
 
         return 0;

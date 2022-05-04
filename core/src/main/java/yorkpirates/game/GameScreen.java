@@ -135,24 +135,24 @@ public class GameScreen extends ScreenAdapter {
 
         // Add alcuin
         newCollege = new College(this,new Texture("alcuin.png"), 1492, 672, 0.4f, 50, 50, "Alcuin", enemyTeam, player, new Texture("alcuin_boat.png"), new Texture("alcuin_2.png"));
-        newCollege.addBoat(30, -20, -60);
-        newCollege.addBoat(-50, -40, -150);
-        newCollege.addBoat(-40, -70, 0);
+        newCollege.addBoat(90, -50, -60);
+        newCollege.addBoat(-90, -40, -150);
+        newCollege.addBoat(-40, -100, 0);
         colleges.add(newCollege);
 
         // Add derwent
         newCollege = (new College(this,new Texture("derwent.png"), 1815, 2105, 0.8f, 50, 50, "Derwent", enemyTeam, player, new Texture("derwent_boat.png"), new Texture("derwent_2.png")));
-        newCollege.addBoat(-70, -20, 60);
-        newCollege.addBoat(-70, -60, 70);
+        newCollege.addBoat(-100, -20, 60);
+        newCollege.addBoat(-100, -60, 70);
         colleges.add(newCollege);
 
         // Add langwith
         newCollege = (new College(this,new Texture("langwith.png"), 1300, 1530, 1.0f, 50, 50, "Langwith", enemyTeam, player, new Texture("langwith_boat.png"), new Texture("langwith_2.png")));
-        newCollege.addBoat(-150, -50, 60);
-        newCollege.addBoat(-120, -10, -60);
-        newCollege.addBoat(-10, -40, 230);
-        newCollege.addBoat(140, 10, 300);
-        newCollege.addBoat(200, 35, 135);
+        newCollege.addBoat(-150, -20, 60);
+        newCollege.addBoat(-120, 10, -60);
+        newCollege.addBoat(-10, -20, 230);
+        newCollege.addBoat(140, 20, 300);
+        newCollege.addBoat(200, 60, 135);
         colleges.add(newCollege);
 
         // Add goodricke

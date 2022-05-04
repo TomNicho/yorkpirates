@@ -1,6 +1,7 @@
 package yorkpirates.game;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.utils.Array;
 
 import java.util.Objects;
 
@@ -51,7 +52,8 @@ public class Projectile extends GameObject{
         dy = changeInY / scaleFactor;
 
         distanceTravelled = 0;
-        float rangeModifier = min(origin.hitBox.width, origin.hitBox.height);
+        // float rangeModifier = min(origin.hitBox.width, origin.hitBox.height);
+        float rangeModifier = 30;
         maxDistance = rangeModifier * projectileSpeed;
     }
 
@@ -81,7 +83,9 @@ public class Projectile extends GameObject{
                 for (Boat b : c.boats) {
                     if (overlaps(b.hitBox)) {
                         if(!Objects.equals(team, b.team)){ // Checks if projectile and boat are on the same time
-                            b.takeDamage(screen, projectileDamage, team);
+                            if(b.takeDamage(screen, projectileDamage)){
+                                c.boats.removeValue(b, true);
+                            }
                         }
                         return 0;
                     }

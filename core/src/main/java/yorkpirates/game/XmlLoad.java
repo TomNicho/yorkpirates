@@ -241,7 +241,7 @@ public class XmlLoad {
                             writer.pop();
                         writer.pop();
                     }
-                    if (obs.damage == 100){
+                    if (obs.damage == 60){
                         writer.element("iceberg");
                             writer.element("x");
                                 writer.text(String.valueOf(obs.x));

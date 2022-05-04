@@ -23,7 +23,7 @@ public class XmlLoad {
 
     //loads xml file into a root element
     private static Element LoadFile (){
-        FileHandle LoadHandle = Gdx.files.internal(LoadPath);
+        FileHandle LoadHandle = Gdx.files.local(LoadPath);
         XmlReader reader = new XmlReader();
         Element root = reader.parse(LoadHandle);
         return root;

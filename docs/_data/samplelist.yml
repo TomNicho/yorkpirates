@@ -5,7 +5,7 @@ docs:
 # target: How the url is opened (_self is same tab, _blank is in a new tab).
 
 - title: Home
-  url: /
+  url: https://tomnicho.github.io/yorkpirates/
   target: _self
 
 - title: GitHub

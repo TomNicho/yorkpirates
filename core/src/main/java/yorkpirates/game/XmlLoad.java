@@ -18,12 +18,12 @@ import java.util.Set;
 public class XmlLoad {
 
     //creates strings showing where files should be stored and loaded. should point to same file. trying to work out how to store in assets atm bear with me.
-    static String LoadPath = "assets/save.xml";
-    static String StorePath = "assets/save.xml";
+    static String LoadPath = "save.xml";
+    static String StorePath = "save.xml";
 
     //loads xml file into a root element
     private static Element LoadFile (){
-        FileHandle LoadHandle = Gdx.files.internal(LoadPath);
+        FileHandle LoadHandle = Gdx.files.local(LoadPath);
         XmlReader reader = new XmlReader();
         Element root = reader.parse(LoadHandle);
         return root;

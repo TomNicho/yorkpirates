@@ -119,7 +119,7 @@ public class GameScreen extends ScreenAdapter {
         Array<Texture> sprites = new Array<>();
 
         // Initialise player
-        player = new Player(new Texture("ship1.png"), 821, 489, 32, 16, playerTeam,l);
+        player = new Player(new Texture("ship1.png"), 821, 489, 32, 16, playerTeam,l, new Texture("allyHealthBar.png"));
         sprites.clear();
         followPos = new Vector3(player.x, player.y, 0f);
         game.camera.position.lerp(new Vector3(760, 510, 0f), 1f);
@@ -266,7 +266,7 @@ public class GameScreen extends ScreenAdapter {
             int y = (int)Math.floor(Math.random()*(((Gdx.graphics.getHeight()/2)+200) - ((Gdx.graphics.getHeight()/2)-200)+1) + (Gdx.graphics.getHeight()/2)-100);
             int size = (int)Math.floor(Math.random()*(80-40+1)+40);
 
-            Rain rrain = new Rain(x, y, size,size,rain,0.6f);
+            Rain rrain = new Rain(x, y, size,size,rain,0.6f, Gdx.graphics.getHeight());
             rains.add(rrain);
         }
     }
@@ -302,7 +302,7 @@ public class GameScreen extends ScreenAdapter {
             int y = (int)Math.floor(Math.random()*(((Gdx.graphics.getHeight()/2)-200) - ((Gdx.graphics.getHeight()/2)+200)+1) + (Gdx.graphics.getHeight()/2)+200);
             int size = (int)Math.floor(Math.random()*(80-40+1)+40);
          
-            Rain rrain = new Rain(x, y, size,size,rain,0.6f);
+            Rain rrain = new Rain(x, y, size,size,rain,0.6f,Gdx.graphics.getHeight());
             storms.add(rrain);
             
         }
@@ -558,7 +558,7 @@ public class GameScreen extends ScreenAdapter {
 
         //creates new player object with information from xml file
         lastLoad = elapsedTime;
-        player = XmlLoad.LoadPlayer(new Texture("ship1.png"));
+        player = XmlLoad.LoadPlayer(new Texture("ship1.png"), new Texture("allyHealthBar.png"));
         followPos = new Vector3(player.x, player.y, 0f);
 
         //creates new college objects with information from xml file

@@ -2,9 +2,13 @@ package yorkpirates.game;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import yorkpirates.GdxTestRunner;
 
 import static org.junit.Assert.assertEquals;
 
+@RunWith(GdxTestRunner.class)
 public class BoatTest {
 
     private Boat b;
@@ -18,7 +22,7 @@ public class BoatTest {
     public void moveTest() {
         b.move(100, 100, 1f);
         assertEquals(45.0, b.rotation, 0.1f);
-        assertEquals(0.707, b.x, 0.1f);
-        assertEquals(0.707, b.y, 0.1f);
+        assertEquals(14.14, b.x, 0.1f);
+        assertEquals(14.14, b.y, 0.1f);
     }
 }

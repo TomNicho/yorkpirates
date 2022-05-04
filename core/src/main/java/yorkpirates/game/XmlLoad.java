@@ -29,13 +29,13 @@ public class XmlLoad {
     }
 
     //returns a player object loaded from xml file
-    public static Player LoadPlayer (Texture texture){
+    public static Player LoadPlayer (Texture texture, Texture healthBar){
         Element root = LoadFile();
         Element playerElem = root.getChildByName("player");
         Float playerX = Float.parseFloat(playerElem.get("x"));
         Float playerY = Float.parseFloat(playerElem.get("y"));
         Label playerWeather = HUD.AddWeatherLabel(playerElem.get("weather"));
-        return new Player(texture, playerX, playerY, 32, 16, "PLAYER", playerWeather);
+        return new Player(texture, playerX, playerY, 32, 16, "PLAYER", playerWeather, healthBar);
     }
 
     //returns position of college with collegeName in form [x,y]

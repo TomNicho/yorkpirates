@@ -6,7 +6,11 @@ import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import yorkpirates.GdxTestRunner;
+
+@RunWith(GdxTestRunner.class)
 public class WeatherTest {
     
     private Weather w1, w2;

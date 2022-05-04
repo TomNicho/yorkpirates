@@ -5,10 +5,14 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import yorkpirates.GdxTestRunner;
+
+// @RunWith(GdxTestRunner.class)
 public class CollegeTest {
 
-    private College c;
+    // private College c;
 
 //    @Before
 //    public void init() {

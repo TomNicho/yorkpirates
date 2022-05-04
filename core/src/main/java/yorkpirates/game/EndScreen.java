@@ -47,10 +47,9 @@ public class EndScreen extends ScreenAdapter {
         skin.addRegions(atlas);
 
         // Generate stage and table
-        endStage = new Stage(screen.getViewport());
         Table table = new Table();
         table.setFillParent(true);
-        Gdx.input.setInputProcessor(endStage);
+        
         table.setBackground(skin.getDrawable("Selection"));
         if(YorkPirates.DEBUG_ON) table.setDebug(true);
 
@@ -97,7 +96,11 @@ public class EndScreen extends ScreenAdapter {
         if(YorkPirates.DEBUG_ON) buttons.setDebug(true);
         table.add(buttons);
 
+        if (Gdx.gl20 == null) return;
+
         // Add table to the stage
+        endStage = new Stage(screen.getViewport());
+        Gdx.input.setInputProcessor(endStage);
         endStage.addActor(table);
     }
 

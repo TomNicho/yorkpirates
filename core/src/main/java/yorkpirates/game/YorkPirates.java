@@ -39,7 +39,7 @@ public class YorkPirates extends Game {
 		// Initialise objects
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 16* SCREEN_TO_PIXEL_RATIO, 9* SCREEN_TO_PIXEL_RATIO);
-		batch = new SpriteBatch();
+		if (Gdx.gl20 != null) batch = new SpriteBatch();
 
 		// Get font from skin
 		TextureAtlas atlas;

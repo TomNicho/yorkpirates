@@ -2,8 +2,6 @@ package yorkpirates.game;
 
 import static org.junit.Assert.assertNotNull;
 
-import com.badlogic.gdx.graphics.OrthographicCamera;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,18 +17,18 @@ public class GameScreenTest {
     @Before
     public void init() {
         yp = new YorkPirates();
-        yp.camera = new OrthographicCamera();
-        // yp.keyboard = new Keyboard();
+        yp.create();
         gs = new GameScreen(yp);
     }
 
     @Test
-    public void general() {
+    public void generalTest() {
         assertNotNull(gs);
     }
 
-    // @Test
-    // public void update() {
-    //     gs.update();
-    // }
+    @Test
+    public void updateTest() {
+        gs.update();
+        assertNotNull(gs);
+    }
 }

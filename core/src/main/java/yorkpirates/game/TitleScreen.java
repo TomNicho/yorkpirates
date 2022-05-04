@@ -15,7 +15,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 public class TitleScreen extends ScreenAdapter {
     private final YorkPirates game;
     private GameScreen nextGame;
-    private final Stage stage;
+    private Stage stage;
 
     private final TextField textBox;
     private final Cell<Image> titleCell;
@@ -41,8 +41,6 @@ public class TitleScreen extends ScreenAdapter {
         skin.addRegions(atlas);
 
         // Generates stage and table
-        stage = new Stage();
-        Gdx.input.setInputProcessor(stage);
         Table table = new Table();
         table.setFillParent(true);
         table.setBackground(skin.getDrawable("Selection"));
@@ -98,9 +96,9 @@ public class TitleScreen extends ScreenAdapter {
         // Add textbox to table
         table.row();
         Table textBoxFiller = new Table();
-        textBoxFiller.add().expand().padRight(stage.getWidth()/3);
+        textBoxFiller.add().expand().padRight(Gdx.graphics.getWidth()/3);
         textBoxFiller.add(textBox).expand().fillX();
-        textBoxFiller.add().expand().padLeft(stage.getWidth()/3);
+        textBoxFiller.add().expand().padLeft(Gdx.graphics.getWidth()/3);
         if(YorkPirates.DEBUG_ON) textBoxFiller.debug();
         table.add(textBoxFiller).expand().fill();
 
@@ -114,7 +112,11 @@ public class TitleScreen extends ScreenAdapter {
         table.row();
         table.add(quitButton).expand();
 
+        if (Gdx.gl20 == null) return;
+
         // Add table to the stage
+        stage = new Stage();
+        Gdx.input.setInputProcessor(stage);
         stage.addActor(table);
     }
 

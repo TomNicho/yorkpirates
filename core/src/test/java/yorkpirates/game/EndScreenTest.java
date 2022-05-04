@@ -20,7 +20,9 @@ public class EndScreenTest {
     public void init() {
         yp = new YorkPirates();
         gs = new GameScreen();
-        es = new EndScreen();
+        gs.points = new ScoreManager();
+        gs.loot = new ScoreManager();
+        es = new EndScreen(yp, gs, true);
     }
 
     @Test

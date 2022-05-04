@@ -134,20 +134,20 @@ public class GameScreen extends ScreenAdapter {
         College newCollege;
 
         // Add alcuin
-        newCollege = new College(this,new Texture("alcuin.png"), 1492, 672, 0.4f, 50, 50, "Alcuin", enemyTeam, player, new Texture("alcuin_boat.png"), new Texture("alcuin_2.png"));
+        newCollege = new College(this,new Texture("alcuin.png"), 1492, 672, 0.4f, 200, 50, "Alcuin", enemyTeam, player, new Texture("alcuin_boat.png"), new Texture("alcuin_2.png"));
         newCollege.addBoat(90, -50, -60);
         newCollege.addBoat(-90, -40, -150);
         newCollege.addBoat(-40, -100, 0);
         colleges.add(newCollege);
 
         // Add derwent
-        newCollege = (new College(this,new Texture("derwent.png"), 1815, 2105, 0.8f, 50, 50, "Derwent", enemyTeam, player, new Texture("derwent_boat.png"), new Texture("derwent_2.png")));
+        newCollege = (new College(this,new Texture("derwent.png"), 1815, 2105, 0.8f, 200, 50, "Derwent", enemyTeam, player, new Texture("derwent_boat.png"), new Texture("derwent_2.png")));
         newCollege.addBoat(-100, -20, 60);
         newCollege.addBoat(-100, -60, 70);
         colleges.add(newCollege);
 
         // Add langwith
-        newCollege = (new College(this,new Texture("langwith.png"), 1300, 1530, 1.0f, 50, 50, "Langwith", enemyTeam, player, new Texture("langwith_boat.png"), new Texture("langwith_2.png")));
+        newCollege = (new College(this,new Texture("langwith.png"), 1300, 1530, 1.0f, 200, 50, "Langwith", enemyTeam, player, new Texture("langwith_boat.png"), new Texture("langwith_2.png")));
         newCollege.addBoat(-150, -20, 60);
         newCollege.addBoat(-120, 10, -60);
         newCollege.addBoat(-10, -20, 230);
@@ -205,12 +205,12 @@ public class GameScreen extends ScreenAdapter {
         Barrel b10 = new Barrel(barrel_brown,2137f, 1877f, 15f, 15f, "ENEMY",40,BarrelType.BROWN);
         Barrel b11 = new Barrel(barrel_brown,1892f, 1543f, 20f, 20f, "ENEMY",40,BarrelType.BROWN);
         //icebergs
-        Obstacle ice1 = new Obstacle(iceberg, 950, 600, 50, 40, "ENEMY",100);
-        Obstacle ice2 = new Obstacle(iceberg, 1530, 500, 50, 40, "ENEMY",100);
-        Obstacle ice3 = new Obstacle(iceberg, 565, 1075, 50, 40, "ENEMY",100);
-        Obstacle ice4 = new Obstacle(iceberg, 1111, 1729, 50, 40, "ENEMY",100);
-        Obstacle ice5 = new Obstacle(iceberg, 656, 1840, 50, 40, "ENEMY",100);
-        Obstacle ice6 = new Obstacle(iceberg, 1770, 1658, 50, 40, "ENEMY",100);
+        Obstacle ice1 = new Obstacle(iceberg, 950, 600, 50, 40, "ENEMY",60);
+        Obstacle ice2 = new Obstacle(iceberg, 1530, 500, 50, 40, "ENEMY",60);
+        Obstacle ice3 = new Obstacle(iceberg, 565, 1075, 50, 40, "ENEMY",60);
+        Obstacle ice4 = new Obstacle(iceberg, 1111, 1729, 50, 40, "ENEMY",60);
+        Obstacle ice5 = new Obstacle(iceberg, 656, 1840, 50, 40, "ENEMY",60);
+        Obstacle ice6 = new Obstacle(iceberg, 1770, 1658, 50, 40, "ENEMY",60);
         
         obstacles.add(b1);
         obstacles.add(b2);
@@ -242,17 +242,36 @@ public class GameScreen extends ScreenAdapter {
         Texture damage = new Texture("damage.png");
         Texture immune = new Texture("immune.png");
         Texture health = new Texture("health.png");
+
         PowerUp s1 = new PowerUp(speed, 940, 550, 20f, 20f, "ENEMY", 0, PowerType.SPEED);
+        PowerUp s2 = new PowerUp(speed, 1742, 1191, 20f, 20f, "ENEMY", 0, PowerType.SPEED);
+        PowerUp s3 = new PowerUp(speed, 2181, 697, 20f, 20f, "ENEMY", 0, PowerType.SPEED);
+        PowerUp s4 = new PowerUp(speed, 1507, 759, 20f, 20f, "ENEMY", 0, PowerType.SPEED);
         PowerUp f1 = new PowerUp(firerate, 940, 450, 20f, 20f, "ENEMY", 0, PowerType.FIRERATE);
+        PowerUp f2 = new PowerUp(firerate, 1179, 1683, 20f, 20f, "ENEMY", 0, PowerType.FIRERATE);
+        PowerUp f3 = new PowerUp(firerate, 2018, 2153, 20f, 20f, "ENEMY", 0, PowerType.FIRERATE);
+        PowerUp f4 = new PowerUp(firerate, 1612, 778, 20f, 20f, "ENEMY", 0, PowerType.FIRERATE);
         PowerUp d1 = new PowerUp(damage, 840, 450, 20f, 20f, "ENEMY", 0, PowerType.DAMAGE);
         PowerUp i1 = new PowerUp(immune, 940, 350, 20f, 20f, "ENEMY", 0, PowerType.IMMUNE);
         PowerUp h1 = new PowerUp(health, 840, 350, 20f, 20f, "ENEMY", 0, PowerType.HEAL);
+        PowerUp h2 = new PowerUp(health, 1138, 752, 20f, 20f, "ENEMY", 0, PowerType.HEAL);
+        PowerUp h3 = new PowerUp(health, 948, 1421, 20f, 20f, "ENEMY", 0, PowerType.HEAL);
+        PowerUp h4 = new PowerUp(health, 2020, 1574, 20f, 20f, "ENEMY", 0, PowerType.HEAL);
 
         obstacles.add(s1);
+        obstacles.add(s2);
+        obstacles.add(s3);
+        obstacles.add(s4);
         obstacles.add(f1);
+        obstacles.add(f2);
+        obstacles.add(f3);
+        obstacles.add(f4);
         obstacles.add(d1);
         obstacles.add(i1);
         obstacles.add(h1);
+        obstacles.add(h2);
+        obstacles.add(h3);
+        obstacles.add(h4);
 
 
     }

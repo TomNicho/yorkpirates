@@ -63,12 +63,24 @@ public class TitleScreen extends ScreenAdapter {
             }});
 
         // Generate buttons
-        ImageTextButton startButton = new ImageTextButton("Play", skin);
+        ImageTextButton easyButton = new ImageTextButton("Easy", skin);
+        ImageTextButton mediumButton = new ImageTextButton("Medium", skin);
+        ImageTextButton hardButton = new ImageTextButton("Hard", skin);
         ImageTextButton quitButton = new ImageTextButton("Exit Game", skin, "Quit");
 
-        startButton.addListener(new ClickListener() {
+        easyButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                gameStart();
+                gameStart("easy");
+            }
+        });
+        mediumButton.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                gameStart("medium");
+            }
+        });
+        hardButton.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                gameStart("hard");
             }
         });
         quitButton.addListener(new ClickListener() {
@@ -91,7 +103,11 @@ public class TitleScreen extends ScreenAdapter {
 
         // Add buttons to table
         table.row();
-        table.add(startButton).expand();
+        table.add(easyButton).expand();
+        table.row();
+        table.add(mediumButton).expand();
+        table.row();
+        table.add(hardButton).expand();
         table.row();
         table.add(quitButton).expand();
 
@@ -135,18 +151,30 @@ public class TitleScreen extends ScreenAdapter {
     /**
      * Is called to create a new game screen.
      */
-    private void gameStart(){
+       private void gameStart(String difflvl){
         // Get player name
         String playerName;
         if ( textBox.getText().equals("Name (optional)") || textBox.getText().equals("")) {
             playerName = "Player";
-
+        
         } else{
             playerName = textBox.getText();
         }
+        
+        // Set difficulty
+        YorkPirates.difficulty = difflvl;
+        
         // Set player name and unpause game
         nextGame.setPaused(false);
         nextGame.setPlayerName(playerName);
         game.setScreen(nextGame);
+
+        if(YorkPirates.difficulty=="easy"){
+            Player.playerProjectileDamage += 10;
+        } else if(YorkPirates.difficulty=="medium"){
+            // Player Projectile Damage is 20 still
+        } else if(YorkPirates.difficulty=="hard"){
+            Player.playerProjectileDamage -= 10;
+        }
     }
 }

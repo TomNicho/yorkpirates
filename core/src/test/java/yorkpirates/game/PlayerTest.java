@@ -2,9 +2,6 @@ package yorkpirates.game;
 
 import static org.junit.Assert.assertNotNull;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +15,7 @@ public class PlayerTest {
 
    @Before
    public void init() {
-       p = new Player(new Texture(Gdx.files.internal("ship1.png")), 0, 0, 100, 100, "", null, null);
+       p = new Player(null, 0, 0, 100, 100, "", null);
    }
 
    @Test

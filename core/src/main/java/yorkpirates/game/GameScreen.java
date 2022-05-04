@@ -119,7 +119,7 @@ public class GameScreen extends ScreenAdapter {
         Array<Texture> sprites = new Array<>();
 
         // Initialise player
-        player = new Player(new Texture("ship1.png"), 821, 489, 32, 16, playerTeam,l, new Texture("allyHealthBar.png"));
+        player = new Player(new Texture("ship1.png"), 821, 489, 32, 16, playerTeam,l);
         sprites.clear();
         followPos = new Vector3(player.x, player.y, 0f);
         game.camera.position.lerp(new Vector3(760, 510, 0f), 1f);
@@ -558,7 +558,7 @@ public class GameScreen extends ScreenAdapter {
 
         //creates new player object with information from xml file
         lastLoad = elapsedTime;
-        player = XmlLoad.LoadPlayer(new Texture("ship1.png"), new Texture("allyHealthBar.png"));
+        player = XmlLoad.LoadPlayer(new Texture("ship1.png"));
         followPos = new Vector3(player.x, player.y, 0f);
 
         //creates new college objects with information from xml file

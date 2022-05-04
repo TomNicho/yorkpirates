@@ -53,7 +53,7 @@ public class Player extends GameObject {
      * @param height    The size of the object in the y-axis.
      * @param team      The team the player is on.
      */
-    public Player(Texture texture, float x, float y, float width, float height, String team, Label weatherLabel, Texture healthBar){
+    public Player(Texture texture, float x, float y, float width, float height, String team, Label weatherLabel){
         super(texture, x, y, width, height, team);
         lastMovementScore = 0;
         splashTime = 0;
@@ -61,7 +61,7 @@ public class Player extends GameObject {
 
         // Generate health
         setMaxHealth(HEALTH);
-        playerHealth = new HealthBar(this, healthBar);
+        playerHealth = new HealthBar(this, new Texture("allyHealthBar.png"));
     }
 
     /**

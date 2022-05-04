@@ -9,8 +9,9 @@ import org.junit.runner.RunWith;
 import yorkpirates.GdxTestRunner;
 
 @RunWith(GdxTestRunner.class)
-public class GameScreenTest {
+public class HUDTest {
 
+    private HUD hud;
     private GameScreen gs;
     private YorkPirates yp;
 
@@ -19,16 +20,11 @@ public class GameScreenTest {
         yp = new YorkPirates();
         yp.create();
         gs = new GameScreen(yp);
+        hud = new HUD(gs);
     }
 
     @Test
     public void generalTest() {
-        assertNotNull(gs);
-    }
-
-    @Test
-    public void updateTest() {
-        gs.update();
-        assertNotNull(gs);
+        assertNotNull(hud);
     }
 }

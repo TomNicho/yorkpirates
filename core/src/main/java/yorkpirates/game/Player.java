@@ -146,7 +146,7 @@ public class Player extends GameObject {
         }
 
         //collide with obstacle
-        for(Iterator<Obstacle> it = screen.obstacles.iterator(); it.hasNext();){
+        for(Iterator<Obstacle> it = GameScreen.obstacles.iterator(); it.hasNext();){
             Obstacle o = it.next();
             if(overlaps(o.hitBox)){
                 

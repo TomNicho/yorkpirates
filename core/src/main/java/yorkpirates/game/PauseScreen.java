@@ -18,7 +18,7 @@ public class PauseScreen extends ScreenAdapter {
 
     private final YorkPirates game;
     private final GameScreen screen;
-    private final Stage pauseStage;
+    private Stage pauseStage;
 
     public PauseScreen(YorkPirates game, GameScreen screen){
         this.game = game;
@@ -31,8 +31,6 @@ public class PauseScreen extends ScreenAdapter {
         skin.addRegions(atlas);
 
         // Generate stage and table
-        pauseStage = new Stage(screen.getViewport());
-        Gdx.input.setInputProcessor(pauseStage);
         Table table = new Table();
         table.setFillParent(true);
         table.setTouchable(Touchable.enabled);
@@ -98,7 +96,11 @@ public class PauseScreen extends ScreenAdapter {
         table.row();
         table.add(quit).expand();
 
+        if (Gdx.gl20 == null) return;
+
         // Add table to the stage
+        pauseStage = new Stage(screen.getViewport());
+        Gdx.input.setInputProcessor(pauseStage);
         pauseStage.addActor(table);
     }
 

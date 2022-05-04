@@ -275,14 +275,8 @@ public class Player extends GameObject {
         timeLastHit = TimeUtils.millis();
         //immunity power up
         if (activePower != PowerType.IMMUNE){
-            if(YorkPirates.difficulty=="easy"){
-                currentHealth -= 0.5 * damage + ARMOUR;
-            } else if(YorkPirates.difficulty=="medium"){
                 currentHealth -= damage + ARMOUR;
-            } else if(YorkPirates.difficulty=="hard"){
-                currentHealth -= 1.5 * damage + ARMOUR;
-            }
-        doBloodSplash = true;
+                doBloodSplash = true;
         }
 
         // Health-bar reduction

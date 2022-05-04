@@ -14,7 +14,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 public class TitleScreen extends ScreenAdapter {
     private final YorkPirates game;
-    private final GameScreen nextGame;
+    private GameScreen nextGame;
     private final Stage stage;
 
     private final TextField textBox;
@@ -30,7 +30,7 @@ public class TitleScreen extends ScreenAdapter {
         this.game = game;
 
         // Generates main gameplay for use as background
-        nextGame = new GameScreen(game);
+        nextGame = new GameScreen(game, "");
         nextGame.setPaused(true);
         nextGame.setPlayerName("Player");
 
@@ -70,16 +70,19 @@ public class TitleScreen extends ScreenAdapter {
 
         easyButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
+                //System.out.print("Easy");
                 gameStart("easy");
             }
         });
         mediumButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
+                //System.out.print("Medium");
                 gameStart("medium");
             }
         });
         hardButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
+                //System.out.print("Hard");
                 gameStart("hard");
             }
         });
@@ -144,7 +147,7 @@ public class TitleScreen extends ScreenAdapter {
      */
     private void update(){
         if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
-            gameStart();
+            gameStart("medium");
         }
     }
 
@@ -162,19 +165,15 @@ public class TitleScreen extends ScreenAdapter {
         }
         
         // Set difficulty
-        YorkPirates.difficulty = difflvl;
+        game.difficulty = difflvl;
         
         // Set player name and unpause game
+        //GameScreen nextGame = new GameScreen(game, difflvl);
+        //nextGame.setPlayerName("Player");
+        nextGame = new GameScreen(game, difflvl);
+
         nextGame.setPaused(false);
         nextGame.setPlayerName(playerName);
         game.setScreen(nextGame);
-
-        if(YorkPirates.difficulty=="easy"){
-            Player.playerProjectileDamage += 10;
-        } else if(YorkPirates.difficulty=="medium"){
-            // Player Projectile Damage is 20 still
-        } else if(YorkPirates.difficulty=="hard"){
-            Player.playerProjectileDamage -= 10;
-        }
     }
 }

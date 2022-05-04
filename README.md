@@ -1,4 +1,4 @@
-# York Pirates!
+# Team siKz!
 ![York Pirates!](https://engteam14.github.io/media/Logo.gif)
 
 A University of York Computer Science Engineering 1 group project.
@@ -134,12 +134,12 @@ The most recent version of the game can be downloaded from the releases tab.
 
 ## Team Members
 
-- [Felix French](https://github.com/orgs/engteam14/people/FelixRizzo)
-- [Joachim Jones](https://github.com/orgs/engteam14/people/JoachimJones)
-- [Saud Kidwai](https://github.com/orgs/engteam14/people/Saud1906)
-- [Katie Maison](https://github.com/orgs/engteam14/people/katie291100)
-- [Jacob Poulton](https://github.com/orgs/engteam14/people/jacobpoulton)
-- [Cody Spinks](https://github.com/orgs/engteam14/people/Cdsspnks96)
+- [Ryan Bulman](https://github.com/orgs/engteam14/people/FelixRizzo)
+- [Frederick Clarke](https://github.com/orgs/engteam14/people/JoachimJones)
+- [Jack Ellis](https://github.com/orgs/engteam14/people/Saud1906)
+- [Yuaho Hu](https://github.com/orgs/engteam14/people/katie291100)
+- [Tom Nicholson](https://github.com/orgs/engteam14/people/jacobpoulton)
+- [James Pursglove](https://github.com/orgs/engteam14/people/Cdsspnks96)
 
 ## Attribution
 

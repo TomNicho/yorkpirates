@@ -30,7 +30,7 @@ public class TitleScreen extends ScreenAdapter {
         this.game = game;
 
         // Generates main gameplay for use as background
-        nextGame = new GameScreen(game, "");
+        nextGame = new GameScreen(game);
         nextGame.setPaused(true);
         nextGame.setPlayerName("Player");
 
@@ -168,9 +168,7 @@ public class TitleScreen extends ScreenAdapter {
         game.difficulty = difflvl;
         
         // Set player name and unpause game
-        //GameScreen nextGame = new GameScreen(game, difflvl);
-        //nextGame.setPlayerName("Player");
-        nextGame = new GameScreen(game, difflvl);
+        nextGame = new GameScreen(game);
 
         nextGame.setPaused(false);
         nextGame.setPlayerName(playerName);

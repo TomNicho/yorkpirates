@@ -95,7 +95,7 @@ public class GameScreen extends ScreenAdapter {
      * Initialises the main game screen, as well as relevant entities and data.
      * @param game  Passes in the base game class for reference.
      */
-    public GameScreen(YorkPirates game, String difficulty) {
+    public GameScreen(YorkPirates game) {
         this.game = game;
         playerName = "Player";
         // Initialise points and loot managers

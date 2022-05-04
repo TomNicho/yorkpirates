@@ -13,7 +13,7 @@ public class Boat extends GameObject {
     public static int FIRE_RATE = 750;
 
     public static float ROTATION_ANCHOR = 2f;
-    public static float MOVE_SPEED = 1f;
+    public static float MOVE_SPEED = 20f;
 
     public float rotation;
     private long lastShotFired;
@@ -24,11 +24,11 @@ public class Boat extends GameObject {
         setMaxHealth(50);
     }
 
-    public void check_collision(GameScreen screen, float horizontal, float vertical){
+    public void check_collision(GameScreen screen, float horizontal, float vertical, float delta){
         Vector2 oldPos = new Vector2(x, y);
         Rectangle thisHitbox = this.hitBox;
         if(horizontal !=0 || vertical !=0){
-            move(horizontal, vertical);
+            move(horizontal, vertical, delta);
             for(College c : screen.colleges){
                 for(int i=0; i < c.boats.size; i++){
                     if(thisHitbox != c.boats.get(i).hitBox){
@@ -59,7 +59,7 @@ public class Boat extends GameObject {
     }
 
     @Override
-    public void move(float x, float y) {
+    public void move(float x, float y, float delta) {
         if (!inProcess(new Vector2(x, y), PROCESS_RANGE)) return;
 
         float rotation = (float) Math.toDegrees(Math.atan2(y - this.y, x - this.x));
@@ -71,8 +71,8 @@ public class Boat extends GameObject {
 
         if (inProcess(new Vector2(x, y), STOP_RANGE)) return;
         
-        this.x += MOVE_SPEED * Math.cos(Math.toRadians(this.rotation));
-        this.y += MOVE_SPEED * Math.sin(Math.toRadians(this.rotation));
+        this.x += MOVE_SPEED * Math.cos(Math.toRadians(this.rotation)) * delta;
+        this.y += MOVE_SPEED * Math.sin(Math.toRadians(this.rotation)) * delta;
     }
     
     public boolean takeDamage(GameScreen screen, float damage){

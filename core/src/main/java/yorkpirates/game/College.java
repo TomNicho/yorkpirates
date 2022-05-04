@@ -26,6 +26,7 @@ public class College extends GameObject {
     public Texture boatTexture, capturedTexture;
     public Array<Boat> boats;
 
+
     /**
      * Generates a college object within the game with animated frame(s) and a hit-box.
      * @param x         The x coordinate within the map to initialise the object at.
@@ -33,7 +34,7 @@ public class College extends GameObject {
      * @param name      The name of the college.
      * @param team      The team the college is on.
      */
-    public College(Texture texture, float x, float y, float scale, int maxHealth, int boatHealth, String name, String team, Player player, Texture boatTexture, Texture capturedTexture) {
+    public College(GameScreen gameScreen, Texture texture, float x, float y, float scale, int maxHealth, int boatHealth, String name, String team, Player player, Texture boatTexture, Texture capturedTexture) {
         super(texture, x, y, texture.getWidth()*scale, texture.getHeight()*scale, team);
 
         this.boatTexture = boatTexture;
@@ -63,7 +64,8 @@ public class College extends GameObject {
      * Called once per frame. Used to perform calculations such as collision.
      * @param screen    The main game screen.
      */
-    public int update(GameScreen screen){
+    @Override
+    public int update(GameScreen screen, float delta){
         direction.move();
         float playerX = screen.getPlayer().x;
         float playerY = screen.getPlayer().y;
@@ -97,7 +99,7 @@ public class College extends GameObject {
         }
 
         for (Boat b : boats) {
-            b.check_collision(screen, playerX, playerY);
+            b.check_collision(screen, playerX, playerY, delta);
             b.updateHitboxPos();
             b.fire(screen);
         }
@@ -140,17 +142,18 @@ public class College extends GameObject {
                 College.capturedCount++;
 
                 //remove mortars
-                if(team == "Langwith"){
-                    for(Weather w : GameScreen.weathers){
+                if(collegeName == "Langwith"){
+                    System.out.println("asdssdsasdasdasdasd");
+                    for(Weather w : screen.weathers){
                         if(w.xpos == 1380){
-                            GameScreen.weathers.remove(w);
+                            screen.weathers.remove(w);
                             break;
                         }
                     }
-                }else if(team == "Alcuin"){
-                    for(Weather w : GameScreen.weathers){
+                }else if(collegeName == "Alcuin"){
+                    for(Weather w : screen.weathers){
                         if(w.xpos == 1435){
-                            GameScreen.weathers.remove(w);
+                            screen.weathers.remove(w);
                             break;
                         }
                     }

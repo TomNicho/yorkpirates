@@ -134,12 +134,12 @@ The most recent version of the game can be downloaded from the releases tab.
 
 ## Team Members
 
-- [Ryan Bulman](https://github.com/orgs/engteam14/people/FelixRizzo)
-- [Frederick Clarke](https://github.com/orgs/engteam14/people/JoachimJones)
-- [Jack Ellis](https://github.com/orgs/engteam14/people/Saud1906)
-- [Yuaho Hu](https://github.com/orgs/engteam14/people/katie291100)
-- [Tom Nicholson](https://github.com/orgs/engteam14/people/jacobpoulton)
-- [James Pursglove](https://github.com/orgs/engteam14/people/Cdsspnks96)
+- [Ryan Bulman](https://github.com/ryan-bulman-uni)
+- [Frederick Clarke](https://github.com/clarke-f)
+- [Jack Ellis](https://github.com/jack-ellis123)
+- [Yuaho Hu](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+- [Tom Nicholson](https://github.com/TomNicho)
+- [James Pursglove](https://github.com/JP5457)
 
 ## Attribution
 

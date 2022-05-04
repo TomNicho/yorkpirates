@@ -27,7 +27,11 @@ public class ScoreManager {
         score += amount;
 
     }
-
+    /**
+     * Subtracts an integer amount from the score
+     * @param amount    The value to be subtracted
+     * @return          Return true if the value remains greater than 0
+     */
     public boolean Sub(int amount){
         if(score - amount >= 0){
             score -= amount;

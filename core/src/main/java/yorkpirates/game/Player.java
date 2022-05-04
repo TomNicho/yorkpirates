@@ -234,7 +234,10 @@ public class Player extends GameObject {
         HUD.speedLbl.setText(speedtext + "mph");
         playerHealth.move(this.x, this.y + height/2 + 2f, delta); // Healthbar moves with player
     }
-    
+    /**
+     * Checks if the player is still under the effects of weather and what type
+     * @param gameScreen    The main game screen
+     */
     public void checkForWeather(GameScreen gameScreen){
    
         WeatherType type = Weather.WhichWeather((int)this.x, (int)this.y, gameScreen.weathers);
@@ -264,7 +267,7 @@ public class Player extends GameObject {
     }
     
     /**
-     * Called when a projectile hits the college.
+     * Called when a projectile hits the player.
      * @param screen            The main game screen.
      * @param damage            The damage dealt by the projectile.
      * @param projectileTeam    The team of the projectile.
@@ -274,8 +277,8 @@ public class Player extends GameObject {
         timeLastHit = TimeUtils.millis();
         //immunity power up
         if (activePower != PowerType.IMMUNE){
-                currentHealth -= damage + ARMOUR;
-                doBloodSplash = true;
+            currentHealth -= damage + ARMOUR;
+            doBloodSplash = true;
         }
 
         // Health-bar reduction
@@ -328,7 +331,8 @@ public class Player extends GameObject {
     public void drawHealthBar(SpriteBatch batch){
         if(!(playerHealth == null)) playerHealth.draw(batch, 0);
     }
-
+    
+    //Getters
     public float getDistance() {
         return distance;
     }

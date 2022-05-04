@@ -6,7 +6,7 @@ layout: default
 This is the website for the York Pirates! game.
 This game is made by Bass<sub>2</sub> (Team 14) for an Engineering 1 group project at the University of York. <br/>It has been added to and updated by, team 6.
 
-The new game can be [downloaded](https://github.com/engteam14/yorkpirates/releases) from our [GitHub repository](https://github.com/TomNicho/yorkpirates).
+The new game can be downloaded from our [here](yorkpirates-1.0.1.jar).
 
 - [**Home**](https://tomnicho.github.io/yorkpirates/) - This page will go over what York Pirates! is, how to play it, and provide information about how our code works.
 
@@ -16,6 +16,7 @@ The new game can be [downloaded](https://github.com/engteam14/yorkpirates/releas
 - [**Plan**](https://tomnicho.github.io/yorkpirates/plan) - Information about how the project was planned throughout development is shown here.
 - [**Use Case**](https://tomnicho.github.io/yorkpirates/usecase) - Shows our planned use case for the game.
 - [**Files**](https://tomnicho.github.io/yorkpirates/files) - Any additional files are listed here.
+- [**Testing**](https://tomnicho.github.io/yorkpirates/test/index.html) - Any additional files are listed here.
 
 ![Game Logo](/media/Logo.gif)
 

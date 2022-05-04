@@ -128,12 +128,12 @@ public class GameScreen extends ScreenAdapter {
 
         // Initialise difficulty
         if (game.difficulty == "easy"){
-            player.DAMAGE += 10;
-            player.ARMOUR += 3;
+            player.DAMAGE += 25;
+            player.ARMOUR += 10;
         }
         if (game.difficulty == "hard"){
-            player.DAMAGE -= 10;
-            player.ARMOUR -= 3;
+            player.DAMAGE -= 20;
+            player.ARMOUR -= 5;
         }
 
         // Initialise tilemap
@@ -146,20 +146,20 @@ public class GameScreen extends ScreenAdapter {
         College newCollege;
 
         // Add alcuin
-        newCollege = new College(new Texture("alcuin.png"), 1492, 672, 0.4f, 50, 50, "Alcuin", enemyTeam, player, new Texture("alcuin_boat.png"), new Texture("alcuin_2.png"),new Texture("alcuin.png"));
+        newCollege = new College(new Texture("alcuin.png"), 1492, 672, 0.4f, 200, 50, "Alcuin", enemyTeam, player, new Texture("alcuin_boat.png"), new Texture("alcuin_2.png"),new Texture("alcuin.png"));
         newCollege.addBoat(90, -50, -60);
         newCollege.addBoat(-90, -40, -150);
         newCollege.addBoat(-40, -100, 0);
         colleges.add(newCollege);
 
         // Add derwent
-        newCollege = (new College(new Texture("derwent.png"), 1815, 2105, 0.8f, 50, 50, "Derwent", enemyTeam, player, new Texture("derwent_boat.png"), new Texture("derwent_2.png"),new Texture("derwent.png")));
+        newCollege = (new College(new Texture("derwent.png"), 1815, 2105, 0.8f, 600, 50, "Derwent", enemyTeam, player, new Texture("derwent_boat.png"), new Texture("derwent_2.png"),new Texture("derwent.png")));
         newCollege.addBoat(-100, -20, 60);
         newCollege.addBoat(-100, -60, 70);
         colleges.add(newCollege);
 
         // Add langwith
-        newCollege = (new College(new Texture("langwith.png"), 1300, 1530, 1.0f, 50, 50, "Langwith", enemyTeam, player, new Texture("langwith_boat.png"), new Texture("langwith_2.png"),new Texture("langwith.png")));
+        newCollege = (new College(new Texture("langwith.png"), 1300, 1530, 1.0f, 400, 50, "Langwith", enemyTeam, player, new Texture("langwith_boat.png"), new Texture("langwith_2.png"),new Texture("langwith.png")));
         newCollege.addBoat(-150, -20, 60);
         newCollege.addBoat(-120, 10, -60);
         newCollege.addBoat(-10, -20, 230);
@@ -287,7 +287,7 @@ public class GameScreen extends ScreenAdapter {
 
 
     }
-
+    // Generate weathers
     private void generateRain(){
         Texture rain = new Texture(Gdx.files.internal("rain.png"));
 

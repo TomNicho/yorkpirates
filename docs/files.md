@@ -23,3 +23,10 @@ Once our implementation was complete, we were able to make the Concrete Represen
 *Concrete Architecture Inheritance using UML*
 ![Relationships](/media/relationships.png)
 *Concrete Architecture Relationships using UML*
+
+
+## Additional umls ###
+
+![Assessment2_1](/media/uml_assess2_1.png)
+*Assessment 2 concrete using UML*
+![Assessment2_1](/media/uml_assess2_2.png)

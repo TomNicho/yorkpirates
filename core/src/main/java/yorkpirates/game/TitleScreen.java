@@ -169,9 +169,10 @@ public class TitleScreen extends ScreenAdapter {
         // Set difficulty
         game.difficulty = difflvl;
         
-        // Set player name and unpause game
+        // Update the GameScreen with the difficulty level
         nextGame = new GameScreen(game);
 
+        // Set player name and unpause game
         nextGame.setPaused(false);
         nextGame.setPlayerName(playerName);
         game.setScreen(nextGame);
